@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Vector.h"
 
+
 int main(void)
 {
 	Vector3<float> v;
@@ -9,8 +10,7 @@ int main(void)
 	v.y = 2.0f;
 	v.z = 1.0f;
 
-
-	v *= v;
+	float* new_ptr = (float*)v;
 	v.normalize();
 	v.normalized();
 	v.square_magnitude();
