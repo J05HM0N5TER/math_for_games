@@ -3,13 +3,18 @@
 
 int main(void)
 {
-	Vector2<float> v;
+	Vector3<float> v;
 
 	v.x = 2.0f;
 	v.y = 2.0f;
+	v.z = 1.0f;
 
 
+	v *= v;
+	v.normalize();
+	v.normalized();
 	v.square_magnitude();
+	v.magnitude();
 
 	system("pause");
 	return 0;
