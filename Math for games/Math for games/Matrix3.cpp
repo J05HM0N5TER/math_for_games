@@ -40,3 +40,74 @@ Matrix3 Matrix3::operator*(const Matrix3& a_rhs) const
 		_2D[0][2] * a_rhs._2D[2][0] + _2D[1][2] * a_rhs._2D[2][1] + _2D[2][2] * a_rhs._2D[2][2], // 100%
 	};
 }
+
+Matrix3 Matrix3::operator*=(const Matrix3 & a_rhs)
+{
+	_2D[0][0] = (_2D[0][0] * a_rhs._2D[0][0] + _2D[1][0] * a_rhs._2D[0][1] + _2D[2][0] * a_rhs._2D[0][2]); // First line
+	_2D[0][1] = (_2D[0][1] * a_rhs._2D[0][0] + _2D[1][1] * a_rhs._2D[0][1] + _2D[2][1] * a_rhs._2D[0][2]); // Expand to 1 column
+	_2D[0][2] = (_2D[0][2] * a_rhs._2D[0][0] + _2D[1][2] * a_rhs._2D[0][1] + _2D[2][2] * a_rhs._2D[0][2]); // 33%
+
+	_2D[1][0] = (_2D[0][0] * a_rhs._2D[1][0] + _2D[1][0] * a_rhs._2D[1][1] + _2D[2][0] * a_rhs._2D[1][2]); // Moving accress RHS columns
+	_2D[1][1] = (_2D[0][1] * a_rhs._2D[1][0] + _2D[1][1] * a_rhs._2D[1][1] + _2D[2][1] * a_rhs._2D[1][2]);
+	_2D[1][2] = (_2D[0][2] * a_rhs._2D[1][0] + _2D[1][2] * a_rhs._2D[1][1] + _2D[2][2] * a_rhs._2D[1][2]); // 66%
+
+	_2D[2][0] = (_2D[0][0] * a_rhs._2D[2][0] + _2D[1][0] * a_rhs._2D[2][1] + _2D[2][0] * a_rhs._2D[2][2]); // Moving accress RHS columns
+	_2D[2][1] = (_2D[0][1] * a_rhs._2D[2][0] + _2D[1][1] * a_rhs._2D[2][1] + _2D[2][1] * a_rhs._2D[2][2]);
+	_2D[2][2] = (_2D[0][2] * a_rhs._2D[2][0] + _2D[1][2] * a_rhs._2D[2][1] + _2D[2][2] * a_rhs._2D[2][2]);
+
+	return *this;
+}
+
+Matrix3 Matrix3::operator+(const Matrix3 & a_rhs) const
+{
+	return
+	{
+		_2D[0][0] + a_rhs._2D[0][0], _2D[0][1] + a_rhs._2D[0][1], _2D[0][2] + a_rhs._2D[0][2],
+		_2D[1][0] + a_rhs._2D[1][0], _2D[1][1] + a_rhs._2D[1][1], _2D[1][2] + a_rhs._2D[1][2],
+		_2D[2][0] + a_rhs._2D[2][0], _2D[2][1] + a_rhs._2D[2][1], _2D[2][2] + a_rhs._2D[2][2]
+	};
+}
+
+Matrix3 & Matrix3::operator+=(const Matrix3 & a_rhs)
+{
+	_2D[0][0] += a_rhs._2D[0][0];
+	_2D[0][1] += a_rhs._2D[0][1];
+	_2D[0][2] += a_rhs._2D[0][2];
+
+	_2D[1][0] += a_rhs._2D[1][0];
+	_2D[1][1] += a_rhs._2D[1][1];
+	_2D[1][2] += a_rhs._2D[1][2];
+
+	_2D[2][0] += a_rhs._2D[2][0];
+	_2D[2][1] += a_rhs._2D[2][1];
+	_2D[2][2] += a_rhs._2D[2][2];
+
+	return *this;
+}
+
+Matrix3 Matrix3::operator-(const Matrix3 & a_rhs) const
+{
+	return
+	{
+		_2D[0][0] - a_rhs._2D[0][0], _2D[0][1] - a_rhs._2D[0][1], _2D[0][2] - a_rhs._2D[0][2],
+		_2D[1][0] - a_rhs._2D[1][0], _2D[1][1] - a_rhs._2D[1][1], _2D[1][2] - a_rhs._2D[1][2],
+		_2D[2][0] - a_rhs._2D[2][0], _2D[2][1] - a_rhs._2D[2][1], _2D[2][2] - a_rhs._2D[2][2]
+	};
+}
+
+Matrix3 & Matrix3::operator-=(const Matrix3 & a_rhs)
+{
+	_2D[0][0] -= a_rhs._2D[0][0];
+	_2D[0][1] -= a_rhs._2D[0][1];
+	_2D[0][2] -= a_rhs._2D[0][2];
+
+	_2D[1][0] -= a_rhs._2D[1][0];
+	_2D[1][1] -= a_rhs._2D[1][1];
+	_2D[1][2] -= a_rhs._2D[1][2];
+
+	_2D[2][0] -= a_rhs._2D[2][0];
+	_2D[2][1] -= a_rhs._2D[2][1];
+	_2D[2][2] -= a_rhs._2D[2][2];
+
+	return *this;
+}
