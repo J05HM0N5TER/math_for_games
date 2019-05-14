@@ -102,7 +102,7 @@ public:
 	Vector4& operator = (const Vector4& a_rhs);
 
 	//! \brief Returns squared magnitude.
-	float square_magnitude();
+	float square_magnitude() const;
 
 	//! \brief Returns the distance between 0,0,0 and the coordinate.
 	float magnitude() const;

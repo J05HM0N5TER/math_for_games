@@ -92,7 +92,7 @@ Vector2& Vector2::operator = (const Vector2& a_rhs)
 	return *this;
 }
 
-float Vector2::square_magnitude()
+float Vector2::square_magnitude() const
 {
 	return ((x * x) + (y * y));
 }

@@ -156,7 +156,7 @@ public:
 	}
 
 	//! \brief Returns squared magnitude.
-	float square_magnitude()
+	float square_magnitude() const
 	{
 		return x * x + y * y;
 	}

@@ -96,7 +96,7 @@ Vector3& Vector3::operator = (const Vector3& a_rhs)
 	return *this;
 }
 
-float Vector3::square_magnitude()
+float Vector3::square_magnitude() const
 {
 	return x * x + y * y + z * z;
 }
