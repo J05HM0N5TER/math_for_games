@@ -22,8 +22,7 @@ public:
 		T data[2];
 	};
 
-	/*!
-		\brief Subscript operator overload, used for direct access.
+	/*!	\brief Subscript operator overload, used for direct access.
 		\param a_index [in] The index that the user is trying to access.
 	*/
 	T& operator[] (const size_t a_index)
@@ -43,8 +42,7 @@ public:
 		return data;
 	}
 
-	/*!
-		\brief Addition operator overload.
+	/*!	\brief Addition operator overload.
 		\param The vector that your plussing to this one.
 		\return A vector with the sum of both vectors being added together.
 	*/
@@ -53,8 +51,7 @@ public:
 		return Vector2<T>(x + a_rhs.x, y + a_rhs.y);
 	}
 
-	/*!
-		\brief Addition and equality overload.
+	/*!	\brief Addition and equality overload.
 		\param a_rhs [in] The vector that is being added.
 		\return The pointer to the current vector.
 	*/
@@ -65,8 +62,7 @@ public:
 		return *this;
 	}
 
-	/*!
-		\brief Subtraction operator overload.
+	/*!	\brief Subtraction operator overload.
 		\param a_rhs [in] The vector that is being subtracted.
 		\return A vector wuth the results.
 	*/
@@ -75,8 +71,7 @@ public:
 		return Vector2<T>(x - a_rhs.x, y - a_rhs.y);
 	}
 
-	/*!
-		\brief Subtraction and equality operator overloder.
+	/*!	\brief Subtraction and equality operator overloder.
 		\param The vector that your plussing to this one.
 		\return The pointer to the current vector vector that your subtracting from.
 	*/
@@ -87,8 +82,7 @@ public:
 		return *this;
 	}
 
-	/*!
-		\brief Multiplication operator overloder.
+	/*!	\brief Multiplication operator overloder.
 		\param scalar [in] The amount that you are multiplying vector by.
 		\return A vector with the completed multiplication.
 	*/
@@ -97,8 +91,7 @@ public:
 		return Vector2<T>(x * scalar, y * scalar);
 	}
 
-	/*!
-		\brief Multiplication operator.
+	/*!	\brief Multiplication operator.
 		\param a_rhs [in] The vector that is being used to multiply this vector.
 		\return A vector with the results.
 	*/
@@ -107,8 +100,7 @@ public:
 		return Vector2<T>(x * a_rhs.x, y * a_rhs.y);
 	}
 
-	/*!
-		\brief Multiplication operator overload.
+	/*!	\brief Multiplication operator overload.
 		\param scalar [in] The varable that the vector is being multiplied by.
 		\return The current vector by reference.
 	*/
@@ -126,8 +118,7 @@ public:
 		return *this;
 	}
 
-	/*!
-		\brief Division operator overloder.
+	/*!	\brief Division operator overloder.
 		\param The amount that you are dividing vector by.
 		\return A vector with the completed division.
 	*/
@@ -136,8 +127,7 @@ public:
 		return Vector2<T>(x / scalar, y / scalar);
 	}
 
-	/*!
-		\brief Division and equality operator overloder.
+	/*!	\brief Division and equality operator overloder.
 		\param The vector that your plussing to this one.
 		\return The pointer to the current vector that your subtracting from.
 	*/
@@ -148,8 +138,7 @@ public:
 		return *this;
 	}
 
-	/*!
-		\brief Equality operator overloder.
+	/*!	\brief Equality operator overloder.
 		\param The vector that are copying over the top of the current one.
 		\return The pointer to the current vector.
 	*/
@@ -171,6 +160,7 @@ public:
 	{
 		return x * x + y * y;
 	}
+
 	//! \brief Returns the normalised vector.
 	Vector2<T> normalized() const
 	{
@@ -183,6 +173,35 @@ public:
 	{
 		*this = this->normalized();
 		return *this;
+	}
+
+	/*!	\brief Returns the dot product of two vectors.
+		\param a_vector2 [in] The second angle that is being compared.
+		\return The dot product (ratio) of the difference in two vector angles.
+		\warning Use normalised vectors otherwize product will be incorrect.
+	*/
+	float dot(const Vector2<T>& a_vector2) const
+	{
+		return (x * a_vector2.x) + (y * a_vector2.y);
+	}
+
+	/*!	\brief Returns the dot product of two vectors.
+		\param a_vector_a [in] The first angle that is being compared.
+		\param a_vector_b [in] The first angle that is being compared. 
+		\return The dot product (ratio) of the difference in two vector angles.
+		\warning Use normalised vectors otherwize product will be incorrect.
+	*/
+	static float dot(const Vector2<T> a_vector_a, const Vector2<T> a_vector_b)
+	{
+		return a_vector_a.dot(a_vector_b);
+	}
+
+	/*! \brief Turns the angle 90 degrees to the right.
+		\return A Vector2 with the angle off to the right by 90 degrees.
+	*/
+	Vector2<T> right() const
+	{
+		return Vector2<T>(y, -x)
 	}
 };
 
