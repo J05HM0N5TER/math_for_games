@@ -43,7 +43,9 @@ public:
 
 	Matrix3 operator * (const Matrix3& a_rhs) const;
 
-	Matrix3 operator *= (const Matrix3& a_rhs);
+	Vector3 operator * (const Vector3& a_rhs) const;
+
+	Matrix3& operator *= (const Matrix3& a_rhs);
 
 	Matrix3 operator + (const Matrix3& a_rhs) const;
 

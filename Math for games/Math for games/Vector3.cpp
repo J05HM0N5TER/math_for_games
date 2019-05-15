@@ -4,7 +4,7 @@ Vector3::Vector3() : x(0.0f), y(0.0f), z(0.0f)
 {}
 
 Vector3::Vector3(const float a_x, const float a_y, const float a_z) : 
-	x(a_x), y(a_y), z(a_z) 
+	data { a_x, a_y, a_x }
 {}
 
 float& Vector3::operator[] (const size_t a_index)

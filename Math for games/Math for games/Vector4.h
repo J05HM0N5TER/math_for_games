@@ -24,16 +24,15 @@ public:
 		float data[4];
 	};
 
-	/*!
-		\brief Subscript operator overload, used for direct access.
+	/*!	\brief Subscript operator overload, used for direct access.
 		\param a_index [in] The index that the user is trying to access.
 	*/
 	float& operator[] (const size_t a_index);
 
 	//! \brief Casting mutable float* operator overloading.
-	explicit operator float* ();
+	operator float* ();
 	//! \brief Casting read only float* operator overloading.
-	explicit operator const float* () const;
+	operator const float* () const;
 
 	/*!	\brief Addition operator overload.
 		\param The vector that your plussing to this one.

@@ -5,7 +5,7 @@ Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
 
 Vector4::Vector4(const float a_x, const float a_y, 
 	const float a_z, const float a_w) : 
-	x(a_x), y(a_y), z(a_z), w(a_w) 
+	data {a_x, a_y, a_z, a_w}
 {}
 
 float& Vector4::operator[] (const size_t a_index)
