@@ -35,6 +35,7 @@ Vector4& Vector4::operator += (const Vector4 a_rhs)
 	y += a_rhs.y;
 	z += a_rhs.z;
 	w += a_rhs.w;
+
 	return *this;
 }
 
@@ -128,7 +129,7 @@ Vector4& Vector4::normalise()
 
 float Vector4::dot(const Vector4& a_Vector4) const
 {
-	return (x * a_Vector4.x) + (y * a_Vector4.y) + (z * a_Vector4.z) + (w * a_Vector4.w);
+	return (x * a_Vector4.x) + (y * a_Vector4.y) + (z * a_Vector4.z);
 }
 
 float Vector4::dot(const Vector4& a_vector_a, const Vector4& a_vector_b)

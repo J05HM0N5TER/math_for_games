@@ -66,31 +66,7 @@ Vector3 Matrix3::operator*(const Vector3 & a_rhs) const
 
 Matrix3& Matrix3::operator*=(const Matrix3 & a_rhs)
 {
-	float temp[2][2];
-
-	temp[0][0] = (_2D[0][0] * a_rhs._2D[0][0] + _2D[1][0] * a_rhs._2D[0][1] + _2D[2][0] * a_rhs._2D[0][2]); // First line
-	temp[0][1] = (_2D[0][1] * a_rhs._2D[0][0] + _2D[1][1] * a_rhs._2D[0][1] + _2D[2][1] * a_rhs._2D[0][2]); // Expand to 1 column
-	temp[0][2] = (_2D[0][2] * a_rhs._2D[0][0] + _2D[1][2] * a_rhs._2D[0][1] + _2D[2][2] * a_rhs._2D[0][2]); // 33%
-	
-	temp[1][0] = (_2D[0][0] * a_rhs._2D[1][0] + _2D[1][0] * a_rhs._2D[1][1] + _2D[2][0] * a_rhs._2D[1][2]); // Moving accress RHS columns
-	temp[1][1] = (_2D[0][1] * a_rhs._2D[1][0] + _2D[1][1] * a_rhs._2D[1][1] + _2D[2][1] * a_rhs._2D[1][2]);
-	temp[1][2] = (_2D[0][2] * a_rhs._2D[1][0] + _2D[1][2] * a_rhs._2D[1][1] + _2D[2][2] * a_rhs._2D[1][2]); // 66%
-	
-	temp[2][0] = (_2D[0][0] * a_rhs._2D[2][0] + _2D[1][0] * a_rhs._2D[2][1] + _2D[2][0] * a_rhs._2D[2][2]); // Moving accress RHS columns
-	temp[2][1] = (_2D[0][1] * a_rhs._2D[2][0] + _2D[1][1] * a_rhs._2D[2][1] + _2D[2][1] * a_rhs._2D[2][2]);
-	temp[2][2] = (_2D[0][2] * a_rhs._2D[2][0] + _2D[1][2] * a_rhs._2D[2][1] + _2D[2][2] * a_rhs._2D[2][2]);
-
-	_2D[0][0] = temp[0][0];
-	_2D[0][1] = temp[0][1];
-	_2D[0][2] = temp[0][2];
-
-	_2D[1][0] = temp[1][0];
-	_2D[1][1] = temp[1][1];
-	_2D[1][2] = temp[1][2];
-
-	_2D[2][0] = temp[2][0];
-	_2D[2][1] = temp[2][1];
-	_2D[2][2] = temp[2][2];
+	*this = *this * a_rhs;
 
 	return *this;
 }
@@ -107,17 +83,7 @@ Matrix3 Matrix3::operator+(const Matrix3 & a_rhs) const
 
 Matrix3 & Matrix3::operator+=(const Matrix3 & a_rhs)
 {
-	_2D[0][0] += a_rhs._2D[0][0];
-	_2D[0][1] += a_rhs._2D[0][1];
-	_2D[0][2] += a_rhs._2D[0][2];
-
-	_2D[1][0] += a_rhs._2D[1][0];
-	_2D[1][1] += a_rhs._2D[1][1];
-	_2D[1][2] += a_rhs._2D[1][2];
-
-	_2D[2][0] += a_rhs._2D[2][0];
-	_2D[2][1] += a_rhs._2D[2][1];
-	_2D[2][2] += a_rhs._2D[2][2];
+	*this = *this + a_rhs;
 
 	return *this;
 }
@@ -134,17 +100,7 @@ Matrix3 Matrix3::operator-(const Matrix3 & a_rhs) const
 
 Matrix3 & Matrix3::operator-=(const Matrix3 & a_rhs)
 {
-	_2D[0][0] -= a_rhs._2D[0][0];
-	_2D[0][1] -= a_rhs._2D[0][1];
-	_2D[0][2] -= a_rhs._2D[0][2];
-
-	_2D[1][0] -= a_rhs._2D[1][0];
-	_2D[1][1] -= a_rhs._2D[1][1];
-	_2D[1][2] -= a_rhs._2D[1][2];
-
-	_2D[2][0] -= a_rhs._2D[2][0];
-	_2D[2][1] -= a_rhs._2D[2][1];
-	_2D[2][2] -= a_rhs._2D[2][2];
+	*this = *this - a_rhs;
 
 	return *this;
 }
@@ -168,12 +124,24 @@ Matrix3 & Matrix3::operator=(const Matrix3 a_rhs)
 
 void Matrix3::setRotateX(const float & a_rotation)
 {
+	_2D[1][1] = cos(a_rotation);
+	_2D[1][2] = sin(a_rotation);
+	_2D[2][1] = -sin(a_rotation);
+	_2D[2][2] = cos(a_rotation);
 }
 
 void Matrix3::setRotateY(const float & a_rotation)
 {
+	_2D[0][0] = cos(a_rotation);
+	_2D[0][2] = -sin(a_rotation);
+	_2D[2][0] = sin(a_rotation);
+	_2D[2][2] = cos(a_rotation);
 }
 
 void Matrix3::setRotateZ(const float & a_rotation)
 {
+	_2D[0][0] = cos(a_rotation);
+	_2D[0][1] = sin(a_rotation);
+	_2D[1][0] = -sin(a_rotation);
+	_2D[1][1] = cos(a_rotation);
 }

@@ -10,5 +10,6 @@ int main() {
 	}
 	std::cout << "All tests passed successfully." << std::endl;
 
+	system("pause");
 	return 0;
 }

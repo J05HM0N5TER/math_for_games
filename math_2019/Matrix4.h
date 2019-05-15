@@ -34,7 +34,7 @@ public:
 	Matrix4(const float a_m00 = 1.0f, const float a_m01 = 0.0f, const float a_m02 = 0.0f, const float a_m03 = 0.0f,	 // Column1
 		const float a_m10 = 0.0f, const float a_m11 = 1.0f, const float a_m12 = 0.0f, const float a_m13 = 0.0f,	 // Column2
 		const float a_m20 = 0.0f, const float a_m21 = 0.0f, const float a_m22 = 1.0f, const float a_m23 = 0.0f,
-		const float a_m30 = 0.0f, const float a_m31 = 0.0f, const float a_m32 = 1.0f, const float a_m33 = 0.0f);
+		const float a_m30 = 0.0f, const float a_m31 = 0.0f, const float a_m32 = 0.0f, const float a_m33 = 1.0f);
 
 	Matrix4(const Vector4& a_right, const Vector4& a_up, const Vector4& a_forwards, const Vector4& a_position);
 

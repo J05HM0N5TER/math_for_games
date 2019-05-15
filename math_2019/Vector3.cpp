@@ -4,7 +4,7 @@ Vector3::Vector3() : x(0.0f), y(0.0f), z(0.0f)
 {}
 
 Vector3::Vector3(const float a_x, const float a_y, const float a_z) : 
-	data { a_x, a_y, a_x }
+	data { a_x, a_y, a_z }
 {}
 
 float& Vector3::operator[] (const size_t a_index)
@@ -120,7 +120,7 @@ Vector3& Vector3::normalise()
 
 float Vector3::dot(const Vector3& a_vector3) const
 {
-	return (x * a_vector3.x) + (y * a_vector3.y) + (z * a_vector3.z);
+	return ((x * a_vector3.x) + (y * a_vector3.y) + (z * a_vector3.z));
 }
 
 float Vector3::dot(const Vector3& a_vector_a, const Vector3& a_vector_b)
