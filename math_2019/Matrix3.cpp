@@ -1,7 +1,5 @@
 #include "Matrix3.h"
 
-
-
 Matrix3::Matrix3(const float a_m00 /*= 1.0f*/, const float a_m01 /*= 0.0f*/, const float a_m02 /*= 0.0f*/,	 // Column1
 			     const float a_m10 /*= 0.0f*/, const float a_m11 /*= 1.0f*/, const float a_m12 /*= 0.0f*/,	 // Column2
 				 const float a_m20 /*= 0.0f*/, const float a_m21 /*= 0.0f*/, const float a_m22 /*= 1.0f*/) : // Column3
@@ -12,6 +10,16 @@ Matrix3::Matrix3(const float a_m00 /*= 1.0f*/, const float a_m01 /*= 0.0f*/, con
 Matrix3::Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_forwards) :
 	axes{ a_right , a_up , a_forwards }
 {}
+
+Matrix3::operator float*()
+{
+	return _1D;
+}
+
+Matrix3::operator const float*() const
+{
+	return _1D;
+}
 
 Vector3 & Matrix3::operator[](const int a_index)
 {

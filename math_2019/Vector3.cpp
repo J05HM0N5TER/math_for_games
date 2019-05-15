@@ -106,15 +106,15 @@ float Vector3::magnitude() const
 	return std::sqrt(square_magnitude());
 }
 
-Vector3 Vector3::normalized() const
+Vector3 Vector3::normalised() const
 {
 	float temp_mag = magnitude();
 	return (*this / temp_mag);
 }
 
-Vector3& Vector3::normalize()
+Vector3& Vector3::normalise()
 {
-	*this = this->normalized();
+	*this = this->normalised();
 	return *this;
 }
 
@@ -138,4 +138,9 @@ Vector3 Vector3::cross(const Vector3& a_vector3) const
 Vector3 Vector3::cross(const Vector3& a_vector_a, const Vector3& a_vector_b)
 {
 	return a_vector_a.cross(a_vector_b);
+}
+
+Vector3 operator*(const float & a_lhs, const Vector3 & a_rhs)
+{
+	return a_rhs * a_lhs;
 }

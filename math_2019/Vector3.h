@@ -111,10 +111,10 @@ public:
 	float magnitude() const;
 
 	//! \brief Returns the normalised vector.
-	Vector3 normalized() const;
+	Vector3 normalised() const;
 
 	//! \brief Normalised the vector.
-	Vector3& normalize();
+	Vector3& normalise();
 
 	/*!	\brief Returns the dot product of two vectors.
 		\param a_vector3 [in] The second angle that is being compared.
@@ -143,5 +143,7 @@ public:
 	*/
 	static Vector3 cross(const Vector3& a_vector_a, const Vector3& a_vector_b);
 };
+
+Vector3 operator * (const float& a_lhs, const Vector3& a_rhs);
 
 #endif // !VECTOR3_H

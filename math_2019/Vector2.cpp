@@ -102,15 +102,15 @@ float Vector2::magnitude() const
 	return std::sqrt(square_magnitude());
 }
 
-Vector2 Vector2::normalized() const
+Vector2 Vector2::normalised() const
 {
 	float temp_mag = magnitude();
 	return (*this / temp_mag);
 }
 
-Vector2& Vector2::normalize()
+Vector2& Vector2::normalise()
 {
-	*this = this->normalized();
+	*this = this->normalised();
 	return *this;
 }
 
@@ -127,4 +127,9 @@ float Vector2::dot(const Vector2 a_vector_a, const Vector2 a_vector_b)
 Vector2 Vector2::right() const
 {
 	return Vector2(y, -x);
+}
+
+Vector2 operator*(const float & a_lhs, const Vector2 & a_rhs)
+{
+	return a_rhs * a_lhs;
 }

@@ -13,6 +13,16 @@ Matrix4::Matrix4(const Vector4& a_right, const Vector4& a_up, const Vector4& a_f
 	axes{ a_right , a_up , a_forwards, a_position}
 {}
 
+Matrix4::operator float*()
+{
+	return _1D;
+}
+
+Matrix4::operator const float*() const
+{
+	return _1D;
+}
+
 Vector4 & Matrix4::operator[](const int a_index)
 {
 	return axes[a_index];

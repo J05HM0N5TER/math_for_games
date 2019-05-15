@@ -36,6 +36,11 @@ public:
 	Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_forwards);
 
 
+	//! \brief Casting mutable float* operator overloading.
+	operator float* ();
+	//! \brief Casting read only float* operator overloading.
+	operator const float* () const;
+
 	// --- Operator overloads ---
 	Vector3& operator [] (const int a_index);
 
