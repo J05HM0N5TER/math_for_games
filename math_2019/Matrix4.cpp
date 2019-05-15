@@ -13,6 +13,11 @@ Matrix4::Matrix4(const Vector4& a_right, const Vector4& a_up, const Vector4& a_f
 	axes{ a_right , a_up , a_forwards, a_position}
 {}
 
+Matrix4::Matrix4(const Matrix4 & a_matrix)
+{
+	*this = a_matrix;
+}
+
 Matrix4::operator float*()
 {
 	return _1D;
@@ -190,4 +195,41 @@ Matrix4 & Matrix4::operator-=(const Matrix4 & a_rhs)
 	_2D[3][3] -= a_rhs._2D[3][3];
 
 	return *this;
+}
+
+Matrix4 & Matrix4::operator=(const Matrix4 & a_rhs)
+{
+	_2D[0][0] = a_rhs._2D[0][0];
+	_2D[0][1] = a_rhs._2D[0][1];
+	_2D[0][2] = a_rhs._2D[0][2];
+	_2D[0][3] = a_rhs._2D[0][3];
+
+	_2D[1][0] = a_rhs._2D[1][0];
+	_2D[1][1] = a_rhs._2D[1][1];
+	_2D[1][2] = a_rhs._2D[1][2];
+	_2D[1][3] = a_rhs._2D[1][3];
+
+	_2D[2][0] = a_rhs._2D[2][0];
+	_2D[2][1] = a_rhs._2D[2][1];
+	_2D[2][2] = a_rhs._2D[2][2];
+	_2D[2][3] = a_rhs._2D[2][3];
+
+	_2D[3][0] = a_rhs._2D[3][0];
+	_2D[3][1] = a_rhs._2D[3][1];
+	_2D[3][2] = a_rhs._2D[3][2];
+	_2D[3][3] = a_rhs._2D[3][3];
+
+	return *this;
+}
+
+void Matrix4::setRotateX(const float & a_rotation)
+{
+}
+
+void Matrix4::setRotateY(const float & a_rotation)
+{
+}
+
+void Matrix4::setRotateZ(const float & a_rotation)
+{
 }

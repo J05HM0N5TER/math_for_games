@@ -35,6 +35,8 @@ public:
 
 	Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_forwards);
 
+	Matrix3(const Matrix3& a_matrix);
+
 
 	//! \brief Casting mutable float* operator overloading.
 	operator float* ();
@@ -59,6 +61,15 @@ public:
 	Matrix3 operator - (const Matrix3& a_rhs) const;
 
 	Matrix3& operator -= (const Matrix3& a_rhs);
+
+	Matrix3& operator = (const Matrix3 a_rhs);
+
+	// --- Transform controls ---
+
+	void setRotateX(const float& a_rotation);
+	void setRotateY(const float& a_rotation);
+	void setRotateZ(const float& a_rotation);
+
 };
 
 #endif // !MATRIX3_H

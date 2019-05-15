@@ -11,6 +11,11 @@ Matrix3::Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_f
 	axes{ a_right , a_up , a_forwards }
 {}
 
+Matrix3::Matrix3(const Matrix3 & a_matrix)
+{
+	*this = a_matrix;
+}
+
 Matrix3::operator float*()
 {
 	return _1D;
@@ -142,4 +147,33 @@ Matrix3 & Matrix3::operator-=(const Matrix3 & a_rhs)
 	_2D[2][2] -= a_rhs._2D[2][2];
 
 	return *this;
+}
+
+Matrix3 & Matrix3::operator=(const Matrix3 a_rhs)
+{
+	_2D[0][0] = a_rhs[0][0];
+	_2D[0][1] = a_rhs[0][1];
+	_2D[0][2] = a_rhs[0][2];
+
+	_2D[1][0] = a_rhs[1][0];
+	_2D[1][1] = a_rhs[1][1];
+	_2D[1][2] = a_rhs[1][2];
+
+	_2D[2][0] = a_rhs[2][0];
+	_2D[2][1] = a_rhs[2][1];
+	_2D[2][2] = a_rhs[2][2];
+
+	return *this;
+}
+
+void Matrix3::setRotateX(const float & a_rotation)
+{
+}
+
+void Matrix3::setRotateY(const float & a_rotation)
+{
+}
+
+void Matrix3::setRotateZ(const float & a_rotation)
+{
 }

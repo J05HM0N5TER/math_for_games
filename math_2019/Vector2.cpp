@@ -4,7 +4,7 @@ Vector2::Vector2() : x(0.0f), y(0.0f)
 }
 
 
-Vector2::Vector2(float a_x, float a_y) : x(a_x), y(a_y)
+Vector2::Vector2(float a_x, float a_y) : data{ a_x, a_y }
 {
 }
 
@@ -27,7 +27,7 @@ Vector2::operator const float*() const
 
 Vector2 Vector2::operator + (const Vector2& a_rhs) const
 {
-	return Vector2(x + a_rhs.x, y + a_rhs.y);
+	return { x + a_rhs.x, y + a_rhs.y };
 }
 
 Vector2& Vector2::operator += (const Vector2 a_rhs)
@@ -39,7 +39,7 @@ Vector2& Vector2::operator += (const Vector2 a_rhs)
 
 Vector2 Vector2::operator - (const Vector2& a_rhs) const
 {
-	return Vector2(x - a_rhs.x, y - a_rhs.y);
+	return { x - a_rhs.x, y - a_rhs.y };
 }
 
 Vector2& Vector2::operator -= (const Vector2& a_rhs)
@@ -51,12 +51,12 @@ Vector2& Vector2::operator -= (const Vector2& a_rhs)
 
 Vector2 Vector2::operator * (const float scalar) const
 {
-	return Vector2(x * scalar, y * scalar);
+	return { x * scalar, y * scalar };
 }
 
 Vector2 Vector2::operator * (const Vector2 a_rhs) const
 {
-	return Vector2(x * a_rhs.x, y * a_rhs.y);
+	return { x * a_rhs.x, y * a_rhs.y };
 }
 
 Vector2 & Vector2::operator * (const float scalar)
@@ -75,7 +75,7 @@ Vector2 & Vector2::operator *= (const Vector2 a_rhs)
 
 Vector2 Vector2::operator / (float scalar) const
 {
-	return Vector2(x / scalar, y / scalar);
+	return { x / scalar, y / scalar };
 }
 
 Vector2& Vector2::operator /= (float scalar)

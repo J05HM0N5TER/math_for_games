@@ -38,6 +38,8 @@ public:
 
 	Matrix4(const Vector4& a_right, const Vector4& a_up, const Vector4& a_forwards, const Vector4& a_position);
 
+	Matrix4(const Matrix4& a_matrix);
+
 
 	//! \brief Casting mutable float* operator overloading.
 	operator float* ();
@@ -63,6 +65,14 @@ public:
 	Matrix4 operator - (const Matrix4& a_rhs) const;
 
 	Matrix4& operator -= (const Matrix4& a_rhs);
+
+	Matrix4& operator = (const Matrix4& a_rhs);
+
+	// --- Transform controls ---
+
+	void setRotateX(const float& a_rotation);
+	void setRotateY(const float& a_rotation);
+	void setRotateZ(const float& a_rotation);
 };
 
 #endif // !MATRIX4_H

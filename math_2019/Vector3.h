@@ -82,7 +82,7 @@ public:
 		\param scalar [in] The varable that the vector is being multiplied by.
 		\return The current vector by reference.
 	*/
-	Vector3 & operator * (const float scalar);
+	Vector3 & operator *= (const float scalar);
 
 	Vector3 & operator *= (const Vector3 a_rhs);
 

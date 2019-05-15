@@ -26,7 +26,7 @@ Vector4::operator const float* () const
 
 Vector4 Vector4::operator + (const Vector4& a_rhs) const
 {
-	return Vector4(x + a_rhs.x, y + a_rhs.y, z + a_rhs.z, w + a_rhs.w);
+	return { x + a_rhs.x, y + a_rhs.y, z + a_rhs.z, w + a_rhs.w };
 }
 
 Vector4& Vector4::operator += (const Vector4 a_rhs)
@@ -40,7 +40,7 @@ Vector4& Vector4::operator += (const Vector4 a_rhs)
 
 Vector4 Vector4::operator - (const Vector4& a_rhs) const
 {
-	return Vector4(x - a_rhs.x, y - a_rhs.y, z - a_rhs.z, w - a_rhs.w);
+	return { x - a_rhs.x, y - a_rhs.y, z - a_rhs.z, w - a_rhs.w };
 }
 
 Vector4& Vector4::operator -= (const Vector4& a_rhs)
@@ -48,17 +48,18 @@ Vector4& Vector4::operator -= (const Vector4& a_rhs)
 	x -= a_rhs.x;
 	y -= a_rhs.y;
 	z -= a_rhs.z;
+	w -= a_rhs.w;
 	return *this;
 }
 
 Vector4 Vector4::operator * (const float scalar) const
 {
-	return Vector4(x * scalar, y * scalar, z * scalar, w * scalar);
+	return { x * scalar, y * scalar, z * scalar, w * scalar };
 }
 
 Vector4 Vector4::operator * (const Vector4 a_rhs) const
 {
-	return Vector4(x * a_rhs.x, y * a_rhs.y, z * a_rhs.z, w * a_rhs.w);
+	return { x * a_rhs.x, y * a_rhs.y, z * a_rhs.z, w * a_rhs.w };
 }
 
 Vector4 & Vector4::operator * (const float scalar)
@@ -66,6 +67,7 @@ Vector4 & Vector4::operator * (const float scalar)
 	x *= scalar;
 	y *= scalar;
 	z *= scalar;
+	w *= scalar;
 	return *this;
 }
 
@@ -74,12 +76,13 @@ Vector4 & Vector4::operator *= (const Vector4 a_rhs)
 	x *= a_rhs.x;
 	y *= a_rhs.y;
 	z *= a_rhs.z;
+	w *= a_rhs.w;
 	return *this;
 }
 
 Vector4 Vector4::operator / (float scalar) const
 {
-	return Vector4(x / scalar, y / scalar, z / scalar, w / scalar);
+	return { x / scalar, y / scalar, z / scalar, w / scalar };
 }
 
 Vector4& Vector4::operator /= (float scalar)
@@ -87,6 +90,7 @@ Vector4& Vector4::operator /= (float scalar)
 	x /= scalar;
 	y /= scalar;
 	z /= scalar;
+	w /= scalar;
 	return *this;
 }
 
@@ -95,6 +99,8 @@ Vector4& Vector4::operator = (const Vector4& a_rhs)
 	x = a_rhs.x;
 	y = a_rhs.y;
 	z = a_rhs.z;
+	w = a_rhs.w;
+
 	return *this;
 }
 
@@ -122,7 +128,7 @@ Vector4& Vector4::normalise()
 
 float Vector4::dot(const Vector4& a_Vector4) const
 {
-	return (x * a_Vector4.x) + (y * a_Vector4.y) + (z * a_Vector4.z);
+	return (x * a_Vector4.x) + (y * a_Vector4.y) + (z * a_Vector4.z) + (w * a_Vector4.w);
 }
 
 float Vector4::dot(const Vector4& a_vector_a, const Vector4& a_vector_b)
@@ -132,10 +138,12 @@ float Vector4::dot(const Vector4& a_vector_a, const Vector4& a_vector_b)
 
 Vector4 Vector4::cross(const Vector4& a_Vector4) const
 {
-	return Vector4(y * a_Vector4.z - z * a_Vector4.y,
+	return {
+		y * a_Vector4.z - z * a_Vector4.y,
 		z * a_Vector4.x - x * a_Vector4.z,
 		x * a_Vector4.y - y * a_Vector4.x,
-		w);
+		w 
+	};
 }
 
 Vector4 Vector4::cross(const Vector4& a_vector_a, const Vector4& a_vector_b)
