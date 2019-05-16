@@ -56,17 +56,17 @@ public:
 
 	/*!	\brief Subtraction operator overload.
 		\param a_rhs [in] The vector that is being subtracted.
-		\return A vector wuth the results.
+		\return A vector with the results.
 	*/
 	Vector3 operator - (const Vector3& a_rhs) const;
 
-	/*!	\brief Subtraction and equality operator overloder.
+	/*!	\brief Subtraction and equality operator overloader.
 		\param The vector that your plussing to this one.
-		\return The pointer to the current vector vector that your subtracting from.
+		\return The pointer to the current vector that your subtracting from.
 	*/
 	Vector3& operator -= (const Vector3& a_rhs);
 
-	/*!	\brief Multiplication operator overloder.
+	/*!	\brief Multiplication operator overloader.
 		\param scalar [in] The amount that you are multiplying vector by.
 		\return A vector with the completed multiplication.
 	*/
@@ -79,26 +79,26 @@ public:
 	Vector3 operator * (const Vector3 a_rhs) const;
 
 	/*!	\brief Multiplication operator overload.
-		\param scalar [in] The varable that the vector is being multiplied by.
+		\param scalar [in] The variable that the vector is being multiplied by.
 		\return The current vector by reference.
 	*/
 	Vector3 & operator *= (const float scalar);
 
 	Vector3 & operator *= (const Vector3 a_rhs);
 
-	/*!	\brief Division operator overloder.
+	/*!	\brief Division operator overloader.
 		\param The amount that you are dividing vector by.
 		\return A vector with the completed division.
 	*/
 	Vector3 operator / (float scalar) const;
 
-	/*!	\brief Division and equality operator overloder.
+	/*!	\brief Division and equality operator overloader.
 		\param The vector that your plussing to this one.
 		\return The pointer to the current vector that your subtracting from.
 	*/
 	Vector3& operator /= (float scalar);
 
-	/*!	\brief Equality operator overloder.
+	/*!	\brief Equality operator overloader.
 		\param The vector that are copying over the top of the current one.
 		\return The pointer to the current vector.
 	*/
@@ -119,7 +119,7 @@ public:
 	/*!	\brief Returns the dot product of two vectors.
 		\param a_vector3 [in] The second angle that is being compared.
 		\return The dot product (ratio) of the difference in two vector angles.
-		\warning Use normalised vectors otherwize product will be incorrect.
+		\warning Use normalised vectors otherwise product will be incorrect.
 	*/
 	float dot(const Vector3& a_vector3) const;
 
@@ -127,19 +127,19 @@ public:
 		\param a_vector_a [in] The first angle that is being compared.
 		\param a_vector_b [in] The first angle that is being compared.
 		\return The dot product (ratio) of the difference in two vector angles.
-		\warning Use normalised vectors otherwize product will be incorrect.
+		\warning Use normalised vectors otherwise product will be incorrect.
 	*/
 	static float dot(const Vector3& a_vector_a, const Vector3& a_vector_b);
 
 	/*!	\brief Finds the vector perpendicular to the two angles supplies.
 		\param a_vector3 [in] The second angle that is being used to find the perpendicular.
-		\return A vector3 witht the perpendicular angle.
+		\return A vector3 with the perpendicular angle.
 	*/
 	Vector3 cross(const Vector3& a_vector3) const;
 
 	/*!	\brief Finds the vector perpendicular to the two angles supplies.
 		\param a_vector3 [in] The second angle that is being used to find the perpendicular.
-		\return A vector3 witht the perpendicular angle.
+		\return A vector3 with the perpendicular angle.
 	*/
 	static Vector3 cross(const Vector3& a_vector_a, const Vector3& a_vector_b);
 };

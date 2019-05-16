@@ -61,8 +61,6 @@ Matrix4 Matrix4::operator*(const Matrix4& a_rhs) const
 		_2D[0][2] * a_rhs._2D[3][0] + _2D[1][2] * a_rhs._2D[3][1] + _2D[2][2] * a_rhs._2D[3][2] + _2D[3][2] * a_rhs._2D[3][3],
 		_2D[0][3] * a_rhs._2D[3][0] + _2D[1][3] * a_rhs._2D[3][1] + _2D[2][3] * a_rhs._2D[3][2] + _2D[3][3] * a_rhs._2D[3][3]
 	};
-
-
 }
 
 Vector4 Matrix4::operator*(const Vector4 & a_rhs) const

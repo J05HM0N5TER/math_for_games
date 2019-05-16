@@ -48,7 +48,7 @@ public:
 	}
 
 	/*!
-		\brief Addition operator overloder.
+		\brief Addition operator overloader.
 		\param The vector that your plussing to this one.
 		\return A vector with the sum of both vectors being added together.
 	*/
@@ -58,9 +58,9 @@ public:
 	}
 
 	/*!
-		\brief Subtraction and equality operator overloder.
+		\brief Subtraction and equality operator overloader.
 		\param The vector that your plussing to this one.
-		\return The pointer to the current vector vector that your subtracting from.
+		\return The pointer to the current vector that your subtracting from.
 	*/
 	Vector4<T>& operator -= (const Vector4<T>& a_rhs)
 	{
@@ -71,7 +71,7 @@ public:
 	}
 
 	/*!
-		\brief Multiplication operator overloder.
+		\brief Multiplication operator overloader.
 		\param The amount that you are multiplying vector by.
 		\return A vector with the completed multiplication.
 	*/
@@ -81,7 +81,7 @@ public:
 	}
 
 	/*!
-		\brief Division and equality operator overloder.
+		\brief Division and equality operator overloader.
 		\param The vector that your plussing to this one.
 		\return The pointer to the current vector that your subtracting from.
 	*/
@@ -94,7 +94,7 @@ public:
 	}
 
 	/*!
-		\brief Equality operator overloder.
+		\brief Equality operator overloader.
 		\param The vector that are copying over the top of the current one.
 		\return The pointer to the current vector.
 	*/

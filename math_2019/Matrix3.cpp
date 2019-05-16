@@ -44,11 +44,11 @@ Matrix3 Matrix3::operator*(const Matrix3& a_rhs) const
 		_2D[0][1] * a_rhs._2D[0][0] + _2D[1][1] * a_rhs._2D[0][1] + _2D[2][1] * a_rhs._2D[0][2], // Expand to 1 column
 		_2D[0][2] * a_rhs._2D[0][0] + _2D[1][2] * a_rhs._2D[0][1] + _2D[2][2] * a_rhs._2D[0][2], // 33%
 
-		_2D[0][0] * a_rhs._2D[1][0] + _2D[1][0] * a_rhs._2D[1][1] + _2D[2][0] * a_rhs._2D[1][2], // Moving accress RHS columns
+		_2D[0][0] * a_rhs._2D[1][0] + _2D[1][0] * a_rhs._2D[1][1] + _2D[2][0] * a_rhs._2D[1][2], // Moving access RHS columns
 		_2D[0][1] * a_rhs._2D[1][0] + _2D[1][1] * a_rhs._2D[1][1] + _2D[2][1] * a_rhs._2D[1][2],
 		_2D[0][2] * a_rhs._2D[1][0] + _2D[1][2] * a_rhs._2D[1][1] + _2D[2][2] * a_rhs._2D[1][2], // 66%
 
-		_2D[0][0] * a_rhs._2D[2][0] + _2D[1][0] * a_rhs._2D[2][1] + _2D[2][0] * a_rhs._2D[2][2], // Moving accress RHS columns
+		_2D[0][0] * a_rhs._2D[2][0] + _2D[1][0] * a_rhs._2D[2][1] + _2D[2][0] * a_rhs._2D[2][2], // Moving access RHS columns
 		_2D[0][1] * a_rhs._2D[2][0] + _2D[1][1] * a_rhs._2D[2][1] + _2D[2][1] * a_rhs._2D[2][2],
 		_2D[0][2] * a_rhs._2D[2][0] + _2D[1][2] * a_rhs._2D[2][1] + _2D[2][2] * a_rhs._2D[2][2], // 100%
 	};
@@ -107,17 +107,21 @@ Matrix3 & Matrix3::operator-=(const Matrix3 & a_rhs)
 
 Matrix3 & Matrix3::operator=(const Matrix3 a_rhs)
 {
-	_2D[0][0] = a_rhs[0][0];
-	_2D[0][1] = a_rhs[0][1];
-	_2D[0][2] = a_rhs[0][2];
+	//_2D[0][0] = a_rhs[0][0];
+	//_2D[0][1] = a_rhs[0][1];
+	//_2D[0][2] = a_rhs[0][2];
 
-	_2D[1][0] = a_rhs[1][0];
-	_2D[1][1] = a_rhs[1][1];
-	_2D[1][2] = a_rhs[1][2];
+	//_2D[1][0] = a_rhs[1][0];
+	//_2D[1][1] = a_rhs[1][1];
+	//_2D[1][2] = a_rhs[1][2];
 
-	_2D[2][0] = a_rhs[2][0];
-	_2D[2][1] = a_rhs[2][1];
-	_2D[2][2] = a_rhs[2][2];
+	//_2D[2][0] = a_rhs[2][0];
+	//_2D[2][1] = a_rhs[2][1];
+	//_2D[2][2] = a_rhs[2][2];
+
+	this->axes[0] = a_rhs.axes[0];
+	this->axes[1] = a_rhs.axes[1];
+	this->axes[2] = a_rhs.axes[2];
 
 	return *this;
 }

@@ -26,7 +26,9 @@
     <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Matrix3(template).h" />
     <ClInclude Include="Matrix3.h" />
+    <ClInclude Include="Matrix4(template).h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Vector2(template).h" />
     <ClInclude Include="Vector2.h" />

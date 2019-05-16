@@ -56,5 +56,11 @@
     <ClInclude Include="Vector2(template).h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Matrix3(template).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4(template).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
