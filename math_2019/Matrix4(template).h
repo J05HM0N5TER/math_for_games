@@ -22,10 +22,10 @@ public:
 		};
 		struct
 		{
-			Vector4<T> right[4];
-			Vector4<T> up[4];
-			Vector4<T> forwards[4];
-			Vector4<T> position[4];
+			Vector4<T> right;
+			Vector4<T> up;
+			Vector4<T> forwards;
+			Vector4<T> position;
 		};
 		T _1D[16];
 		T _2D[4][4];

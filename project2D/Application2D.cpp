@@ -15,10 +15,16 @@ bool Application2D::startup() {
 	
 	m_2dRenderer = new aie::Renderer2D();
 
-	m_texture = new aie::Texture("./textures/numbered_grid.tga");
-	m_shipTexture = new aie::Texture("./textures/ship.png");
+	m_sun_texture = new aie::Texture("./textures/the_sun.png");
+	m_moon_texture = new aie::Texture("./textures/the_moon.png");
+	m_earth_texture = new aie::Texture("./textures/earth.png");
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
+
+	sun_world_transform.position = Vector3(640.0f, 340.0f, 1.0f);
+	earth_local_transform.position = Vector3(0.0f, 200.0f, 1.0f);
+	moon_local_transform.position = Vector3(0.0f, 70.0f, 1.0f);
+
 	
 	m_timer = 0;
 
@@ -28,12 +34,37 @@ bool Application2D::startup() {
 void Application2D::shutdown() {
 	
 	delete m_font;
-	delete m_texture;
-	delete m_shipTexture;
+	delete m_sun_texture;
+	delete m_moon_texture;
+	delete m_earth_texture;
 	delete m_2dRenderer;
 }
 
 void Application2D::update(float deltaTime) {
+
+	Matrix3 rotation;
+
+	rotation.setRotateZ(deltaTime);
+
+	// Rotates object by this rotation matrix.
+	sun_world_transform *= rotation;
+
+	// Ship spins same as parent.
+	rotation.setRotateZ(deltaTime);
+
+	// Rotate the earth.
+	//earth_local_transform = rotation * earth_local_transform;
+	earth_local_transform *= rotation;
+
+	// Calculate the global postion of the earth off the sun position.
+	earth_world_transform = sun_world_transform * earth_local_transform;
+
+	// Rotate the moon.
+	moon_local_transform *= rotation;
+
+	// Calculate the global postion of the earth off the earth position.
+	moon_world_transform = earth_world_transform * moon_local_transform;
+
 
 	m_timer += deltaTime;
 
@@ -72,29 +103,21 @@ void Application2D::draw() {
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-	// demonstrate animation
-	m_2dRenderer->setUVRect(int(m_timer) % 8 / 8.0f, 0, 1.f / 8, 1.f / 8);
-	m_2dRenderer->drawSprite(m_texture, 200, 200, 100, 100);
+	m_2dRenderer->drawSpriteTransformed3x3(m_sun_texture, sun_world_transform, 100.0f, 100.0f);
 
-	// demonstrate spinning sprite
-	m_2dRenderer->setUVRect(0,0,1,1);
-	m_2dRenderer->drawSprite(m_shipTexture, 600, 400, 0, 0, m_timer, 1);
+	// Draw the sun.
+	m_2dRenderer->drawSpriteTransformed3x3(m_sun_texture, sun_world_transform, 100.0f, 100.0f);
 
-	// draw a thin line
-	m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
+	// Draw the earth
+	m_2dRenderer->drawSpriteTransformed3x3(m_earth_texture, earth_world_transform, 50.0f, 50.0f);
 
-	// draw a moving purple circle
-	m_2dRenderer->setRenderColour(1, 0, 1, 1);
-	m_2dRenderer->drawCircle(sin(m_timer) * 100 + 600, 150, 50);
-
-	// draw a rotating red box
-	m_2dRenderer->setRenderColour(1, 0, 0, 1);
-	m_2dRenderer->drawBox(600, 500, 60, 20, m_timer);
-
-	// draw a slightly rotated sprite with no texture, coloured yellow
-	m_2dRenderer->setRenderColour(1, 1, 0, 1);
-	m_2dRenderer->drawSprite(nullptr, 400, 400, 50, 50, 3.14159f * 0.25f, 1);
+	// Draw the moon.
+	m_2dRenderer->drawSpriteTransformed3x3(m_moon_texture, moon_world_transform, 20.0f, 20.0f);
 	
+
+	// Draw line
+	//m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
+
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());

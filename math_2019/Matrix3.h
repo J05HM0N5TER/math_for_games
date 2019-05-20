@@ -18,9 +18,9 @@ public:
 		};
 		struct
 		{
-			Vector3 right[3];
-			Vector3 up[3];
-			Vector3 forwards[3];
+			Vector3 right;
+			Vector3 up;
+			Vector3 position;
 		};
 		float _1D[9];
 		float _2D[3][3];

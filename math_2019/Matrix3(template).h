@@ -21,9 +21,9 @@ public:
 		};
 		struct
 		{
-			Vector3<T> right[3];
-			Vector3<T> up[3];
-			Vector3<T> forwards[3];
+			Vector3<T> right;
+			Vector3<T> up;
+			Vector3<T> forwards;
 		};
 		T _1D[9];
 		T _2D[3][3];

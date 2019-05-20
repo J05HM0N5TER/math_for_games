@@ -19,10 +19,10 @@ public:
 		};
 		struct
 		{
-			Vector4 right[4];
-			Vector4 up[4];
-			Vector4 forwards[4];
-			Vector4 position[4];
+			Vector4 right;
+			Vector4 up;
+			Vector4 forwards;
+			Vector4 position;
 		};
 		float _1D[16];
 		float _2D[4][4];
