@@ -11,10 +11,7 @@ Matrix3::Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_f
 	axes{ a_right , a_up , a_forwards }
 {}
 
-Matrix3::Matrix3(const Matrix3 & a_matrix)
-{
-	*this = a_matrix;
-}
+
 
 Matrix3::operator float*()
 {

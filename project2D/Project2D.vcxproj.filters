@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SolarSystemApp.cpp">
+    <ClCompile Include="Application2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SolarSystemApp.h">
+    <ClInclude Include="Application2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

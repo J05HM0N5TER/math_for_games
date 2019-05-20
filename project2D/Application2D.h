@@ -1,14 +1,16 @@
 #pragma once
 
-#include "Vector3.h"
+#include "Vector2.h"
 #include "Application.h"
 #include "Renderer2D.h"
 
-class SolarSystemApp : public aie::Application {
+class Application2D : public aie::Application {
 public:
 
-	SolarSystemApp();
-	virtual ~SolarSystemApp();
+	Vector2 test;
+
+	Application2D();
+	virtual ~Application2D();
 
 	virtual bool startup();
 	virtual void shutdown();
@@ -19,5 +21,9 @@ public:
 protected:
 
 	aie::Renderer2D*	m_2dRenderer;
+	aie::Texture*		m_texture;
+	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
+
+	float m_timer;
 };

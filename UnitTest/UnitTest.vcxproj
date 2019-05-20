@@ -22,7 +22,7 @@
     <ProjectGuid>{02425FB5-E15F-4B7D-84FC-DA0B04920551}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnitTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -93,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\math_2019\$(Platform)\$(Configuration)\; $(solutiondir)\math_2019\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\math_2019\$(Platform)\$(Configuration)\; $(SolutionDir)\math_2019\</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(SolutionDir)\dependencies\math_2019\$(Platform)\$(Configuration)\; $(SolutionDir)\math_2019\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -108,13 +108,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\$(Configuration)\; $(solutiondir)\math_2019\</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(SolutionDir)\dependencies\$(Configuration)\; $(SolutionDir)\math_2019\</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\math_2019\$(Platform)\$(Configuration)\; $(SolutionDir)\math_2019\</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>$(SolutionDir)\dependencies\math_2019\$(Platform)\$(Configuration)\; $(SolutionDir)\math_2019\</AdditionalUsingDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>math_2019.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\math_2019\x64\debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

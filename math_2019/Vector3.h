@@ -1,7 +1,4 @@
 #pragma once
-//! \brief Class for a 2D vector.
-
-#pragma once
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
