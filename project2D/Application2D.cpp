@@ -12,31 +12,60 @@ Application2D::~Application2D() {
 }
 
 bool Application2D::startup() {
-	
+
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_sun_texture = new aie::Texture("./textures/the_sun.png");
 	m_moon_texture = new aie::Texture("./textures/the_moon.png");
 	m_earth_texture = new aie::Texture("./textures/earth.png");
-	m_station_texture = new aie::Texture("./textures/space_station.png");
+	m_mars_texture = new aie::Texture("./textures/mars.png");
+	m_jupiter_texture = new aie::Texture("./textures/jupiter.png");
+	m_saturn_texture = new aie::Texture("./textures/saturn.png");
+	m_mercury_texture = new aie::Texture("./textures/mercury.png");
+	m_venus_texture = new aie::Texture("./textures/venus.png");
+	m_uranus_texture = new aie::Texture("./textures/uranus.png");
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
 
-	sun_world_transform.position = Vector3(640.0f, 340.0f, 1.0f);
-	earth_local_transform.position = Vector3(0.0f, 200.0f, 1.0f);
-	moon_local_transform.position = Vector3(0.0f, 70.0f, 1.0f);
-	station_local_transform.position = Vector3(0.0f, 20.0f, 1.0f);
+	float size_adjustment = 0.6f;
 
-	earth_roation = 1.0f;
-	earth_orbit = 3.14159f / 2.0f; // 90deg / second.
-	
-	moon_rotation = 3.14159f/* / 2.0f*/;
-	moon_orbit = moon_rotation * 0.5f;
 
-	Vector3 t = {1, 2, 3};
+	sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, { 150.0f * size_adjustment, 150.0f * size_adjustment });
 
-	station_rotation = 1;
-	station_orbit = 5;
+	mars = new game_object(m_2dRenderer, m_mars_texture, { 0.0f, 400.0f * size_adjustment }, 0.0f,
+		{ 40.0f * size_adjustment, 40.0f * size_adjustment }, 15.0f, 1.5f * size_adjustment);
+	mars->set_parent(sun);
+
+	jupiter = new game_object(m_2dRenderer, m_jupiter_texture, { 0.0f, 550.0f * size_adjustment }, 0.0f,
+		{ 60.0f * size_adjustment, 60.0f * size_adjustment }, 15.0f, 1.4f * size_adjustment);
+	jupiter->set_parent(sun);
+
+	uranus = new game_object(m_2dRenderer, m_uranus_texture, { 0.0f, 750.0f * size_adjustment }, 0.0f,
+		{ 60.0f * size_adjustment, 60.0f * size_adjustment }, 15.0f, 1.35f * size_adjustment);
+	uranus->set_parent(sun);
+
+	saturn = new game_object(m_2dRenderer, m_saturn_texture, { 0.0f, 650.0f * size_adjustment }, 0.0f,
+		{ 120.0f * size_adjustment, 60.0f * size_adjustment }, -1.7f * size_adjustment, 1.7f * size_adjustment);
+	saturn->set_parent(sun);
+
+	mercury = new game_object(m_2dRenderer, m_mercury_texture, { 0.0f, 150.0f * size_adjustment }, 0.0f,
+		{ 50.0f * size_adjustment, 50.0f * size_adjustment }, 15.0f, 1.1f * size_adjustment);
+	mercury->set_parent(sun);
+
+	venus = new game_object(m_2dRenderer, m_venus_texture, { 0.0f, 220.0f * size_adjustment }, 0.0f,
+		{ 50.0f * size_adjustment, 50.0f * size_adjustment }, 15.0f, 1.3f * size_adjustment);
+	venus->set_parent(sun);
+
+	earth = new game_object(m_2dRenderer, m_earth_texture, { 0.0f, 300.0f * size_adjustment }, 0.0f,
+		{ 50.0f * size_adjustment, 50.0f * size_adjustment }, 15.0f, 3.14159f / 2.0f * size_adjustment);
+	earth->set_parent(sun);
+
+	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, { 15.0f * size_adjustment, 15.0f * size_adjustment },
+		0.0f, (-earth->m_rotation_speed - earth->m_orbit_speed ) + 0.5 * size_adjustment);
+	moon->set_parent(earth);
+
+
+
 
 	m_timer = 0;
 
@@ -47,7 +76,7 @@ bool Application2D::startup() {
 }
 
 void Application2D::shutdown() {
-	
+
 	delete m_font;
 	delete m_sun_texture;
 	delete m_moon_texture;
@@ -55,53 +84,10 @@ void Application2D::shutdown() {
 	delete m_2dRenderer;
 }
 
-void Application2D::update(float deltaTime) {
-
-	Matrix3 rotation_matrix;
-
-	rotation_matrix.setRotateZ(deltaTime);
-
-	// Rotates object by this rotation_matrix matrix.
-	sun_world_transform *= rotation_matrix;
-
-	// Ship spins same as parent.
-	rotation_matrix.setRotateZ(deltaTime);
-
-	// Rotate the earth.
-	//earth_local_transform = rotation_matrix * earth_local_transform;
-	earth_local_transform *= rotation_matrix;
-
-	// Set earth orbit speed.
-	rotation_matrix.setRotateZ(deltaTime * earth_orbit);
-	earth_local_transform = rotation_matrix * earth_local_transform;
-
-	// Calculate the global postion of the earth off the sun position.
-	earth_world_transform = sun_world_transform * earth_local_transform;
-
-	// Rotate the moon.
-	rotation_matrix.setRotateZ(deltaTime * moon_rotation);
-	moon_local_transform *= rotation_matrix;
-
-	// Set moon rotate speed
-	rotation_matrix.setRotateZ(-deltaTime * moon_orbit);
-	moon_local_transform = rotation_matrix * moon_local_transform;
-
-
-	// Calculate the global postion of the earth off the earth position.
-	moon_world_transform = earth_world_transform * moon_local_transform;
-
-	// Rotate the station.
-	rotation_matrix.setRotateZ(-deltaTime * station_rotation * 0.5f);
-	station_local_transform *= rotation_matrix;
-
-	// Set station rotate speed
-	rotation_matrix.setRotateZ(deltaTime * station_orbit);
-	station_local_transform = rotation_matrix * station_local_transform;
-
-
-	// Calculate the global postion of the moon off the moon position.
-	station_world_transform = moon_world_transform * station_local_transform;
-
+void Application2D::update(float deltaTime)
+{
+	// Update planets
+	sun->update(deltaTime);
 
 
 	m_timer += deltaTime;
@@ -141,20 +127,9 @@ void Application2D::draw() {
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-	m_2dRenderer->drawSpriteTransformed3x3(m_sun_texture, sun_world_transform, 100.0f, 100.0f);
+	// Draw planets.
+	sun->draw();
 
-	// Draw the sun.
-	m_2dRenderer->drawSpriteTransformed3x3(m_sun_texture, sun_world_transform, 100.0f, 100.0f);
-
-	// Draw the earth
-	m_2dRenderer->drawSpriteTransformed3x3(m_earth_texture, earth_world_transform, 50.0f, 50.0f);
-
-	// Draw the moon.
-	m_2dRenderer->drawSpriteTransformed3x3(m_moon_texture, moon_world_transform, 20.0f, 20.0f);
-
-	// Draw the station
-	m_2dRenderer->drawSpriteTransformed3x3(m_station_texture, station_world_transform, 10.0f, 10.0f);
-	
 
 	// Draw line
 	//m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
