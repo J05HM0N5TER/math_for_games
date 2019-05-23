@@ -20,21 +20,10 @@ public:
 
 protected:
 
-	//Matrix3 sun_world_transform;
-	//Matrix3 earth_local_transform;
-	//Matrix3 earth_world_transform;
-	//float earth_rotation;
-	//float earth_orbit;
-
-	//Matrix3 moon_local_transform;
-	//Matrix3 moon_world_transform;
-	//float moon_rotation;
-	//float moon_orbit;
-
+	// Planet
 	game_object* sun;
 	game_object* earth;
 	game_object* moon;
-	game_object* station;
 	game_object* mars;
 	game_object* jupiter;
 	game_object* saturn;
@@ -42,12 +31,7 @@ protected:
 	game_object* venus;
 	game_object* uranus;
 
-	//Matrix3 station_local_transform;
-	//Matrix3 station_world_transform;
-	//float station_rotation;
-	//float station_orbit;
-
-	// Plannet textures.
+	// Planet textures.
 	aie::Texture*		m_mars_texture;
 	aie::Texture*		m_uranus_texture;
 	aie::Texture*		m_jupiter_texture;

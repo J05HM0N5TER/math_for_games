@@ -33,8 +33,10 @@ bool Application2D::startup() {
 	sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, { 150.0f * size_adjustment, 150.0f * size_adjustment });
 
 	mars = new game_object(m_2dRenderer, m_mars_texture, { 0.0f, 400.0f * size_adjustment }, 0.0f,
-		{ 40.0f * size_adjustment, 40.0f * size_adjustment }, 15.0f, 1.5f * size_adjustment);
+		{ 40.0f * size_adjustment, 40.0f * size_adjustment });
 	mars->set_parent(sun);
+	mars->set_global_orbit(1.5f * size_adjustment);
+	mars->set_global_rotation(15.0f);
 
 	jupiter = new game_object(m_2dRenderer, m_jupiter_texture, { 0.0f, 550.0f * size_adjustment }, 0.0f,
 		{ 60.0f * size_adjustment, 60.0f * size_adjustment }, 15.0f, 1.4f * size_adjustment);
@@ -60,9 +62,11 @@ bool Application2D::startup() {
 		{ 50.0f * size_adjustment, 50.0f * size_adjustment }, 15.0f, 3.14159f / 2.0f * size_adjustment);
 	earth->set_parent(sun);
 
-	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, { 15.0f * size_adjustment, 15.0f * size_adjustment },
-		0.0f, (-earth->m_rotation_speed - earth->m_orbit_speed ) + 0.5 * size_adjustment);
+	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, { 15.0f * size_adjustment, 15.0f * size_adjustment });
 	moon->set_parent(earth);
+	//moon->m_orbit_speed = -moon->get_global_rotation() + 0.5 * size_adjustment;
+	moon->set_global_orbit(0.5 * size_adjustment);
+	moon->set_global_rotation(moon->get_parent()->m_rotation_speed);
 
 
 
@@ -78,10 +82,27 @@ bool Application2D::startup() {
 void Application2D::shutdown() {
 
 	delete m_font;
-	delete m_sun_texture;
-	delete m_moon_texture;
-	delete m_earth_texture;
 	delete m_2dRenderer;
+
+   delete m_mars_texture;
+   delete m_uranus_texture;
+   delete m_jupiter_texture;
+   delete m_mercury_texture;
+   delete m_venus_texture;
+   delete m_saturn_texture;
+   delete m_earth_texture;
+   delete m_sun_texture;
+   delete m_moon_texture;
+
+   delete sun;
+   delete earth;
+   delete moon;
+   delete mars;
+   delete jupiter;
+   delete saturn;
+   delete mercury;
+   delete venus;
+   delete uranus;
 }
 
 void Application2D::update(float deltaTime)

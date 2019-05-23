@@ -27,9 +27,12 @@ public:
 	void set_local_position(const Vector2& a_position);
 
 	//void set_rotation(const float& a_position);
-	//void set_global_rotation(const float& a_position);
+	float get_global_rotation();
+	void set_global_rotation(const float& a_rotaion_speed);
+	void set_global_orbit(const float& a_orbit_speed);
 
 	void set_parent(game_object* a_parent);
+	game_object* get_parent();
 
 	void add_child(game_object* a_child);
 

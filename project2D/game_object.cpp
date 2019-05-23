@@ -77,10 +77,41 @@ void game_object::set_local_position(const Vector2 & a_position)
 }
 
 
+float game_object::get_global_rotation()
+{
+	game_object* current_game_object = m_parent;
+	float rotaion_counter = 0.0f;
+
+	while (current_game_object)
+	{
+		rotaion_counter += current_game_object->m_orbit_speed + current_game_object->m_rotation_speed;
+		current_game_object = current_game_object->get_parent();
+	}
+
+	rotaion_counter += m_rotation_speed + m_orbit_speed;
+
+	return rotaion_counter;
+}
+
+void game_object::set_global_rotation(const float& a_rotaion_speed)
+{
+	m_rotation_speed = -this->get_global_rotation() + a_rotaion_speed;
+}
+
+void game_object::set_global_orbit(const float & a_orbit_speed)
+{
+	m_orbit_speed = -this->get_global_rotation() + a_orbit_speed;
+}
+
 void game_object::set_parent(game_object * a_parent)
 {
 	m_parent = a_parent;
 	m_parent->add_child(this);
+}
+
+game_object * game_object::get_parent()
+{
+	return m_parent;
 }
 
 void game_object::add_child(game_object * a_child)
