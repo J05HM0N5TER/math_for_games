@@ -14,11 +14,6 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 	m_local_transform.position = { a_position.x, a_position.y, 1.0f };
 }
 
-
-game_object::~game_object()
-{
-}
-
 void game_object::update(const float a_delta_time)
 {
 
@@ -36,7 +31,7 @@ void game_object::update(const float a_delta_time)
 	// childing
 	if (m_parent)
 	{
-		// Calculate the global postion of the earth off the sun position.
+		// Calculate the global position of the earth off the sun position.
 		m_world_transform = m_parent->get_world_matrix() * m_local_transform;
 	}
 	else
@@ -76,18 +71,21 @@ void game_object::set_local_position(const Vector2 & a_position)
 	m_position = a_position;
 }
 
-
-float game_object::get_global_rotation()
+const float& game_object::get_global_rotation() const
 {
-	game_object* current_game_object = m_parent;
+	game_object* current_game_object;
 	float rotaion_counter = 0.0f;
 
-	while (current_game_object)
+	if (m_parent)
 	{
-		rotaion_counter += current_game_object->m_orbit_speed + current_game_object->m_rotation_speed;
-		current_game_object = current_game_object->get_parent();
-	}
+		current_game_object = this->m_parent;
 
+		while (current_game_object != nullptr)
+		{
+			rotaion_counter += current_game_object->m_orbit_speed + current_game_object->m_rotation_speed;
+			current_game_object = current_game_object->get_parent();
+		}
+	}
 	rotaion_counter += m_rotation_speed + m_orbit_speed;
 
 	return rotaion_counter;
@@ -103,13 +101,28 @@ void game_object::set_global_orbit(const float & a_orbit_speed)
 	m_orbit_speed = -this->get_global_rotation() + a_orbit_speed;
 }
 
+void game_object::set_orbit_speed(const float & a_orbit_speed)
+{
+	m_orbit_speed = a_orbit_speed;
+}
+
+const float & game_object::get_orbit_speed() const
+{
+	return m_orbit_speed;
+}
+
+const float & game_object::get_rotation_speed() const
+{
+	return m_rotation_speed;
+}
+
 void game_object::set_parent(game_object * a_parent)
 {
 	m_parent = a_parent;
 	m_parent->add_child(this);
 }
 
-game_object * game_object::get_parent()
+game_object * game_object::get_parent() const
 {
 	return m_parent;
 }
@@ -117,4 +130,14 @@ game_object * game_object::get_parent()
 void game_object::add_child(game_object * a_child)
 {
 	m_children.push_back(a_child);
+}
+
+void game_object::set_size(const Vector2 & a_size)
+{
+	m_size = a_size;
+}
+
+const Vector2 & game_object::get_size() const
+{
+	return m_size;
 }
