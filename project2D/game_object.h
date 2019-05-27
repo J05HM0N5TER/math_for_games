@@ -53,6 +53,15 @@ public:
 	// \brief Gets the display size of the object.
 	const Vector2& get_size() const;
 
+	// Set acceleration.
+	void set_acceleration(const float & a_acceleration);
+	// Get acceleration.
+	const float get_acceleration() const;
+
+	void set_speed(const float& a_speed);
+
+	const float & get_speed() const;
+
 private:
 
 	// \brief Added a child to the object.
@@ -67,6 +76,13 @@ private:
 	float m_orbit_speed;
 	// How quick the object rotates in radians per second.
 	float m_rotation_speed;
+
+	// The current linear speed (DOES NOT INCLUDE PARENT TRANSFORM AND ORBIT CHANGES.)
+	float m_speed;
+	// The lenear acceleration over time.
+	float m_acceleration;
+	// The maximum linear speed that the object is allowed to achieve.
+	float m_max_speed;
 
 	// What the object is being drawn as.
 	aie::Texture* m_texture;

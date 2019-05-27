@@ -7,8 +7,8 @@ Matrix3::Matrix3(const float a_m00 /*= 1.0f*/, const float a_m01 /*= 0.0f*/, con
 {
 }
 
-Matrix3::Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_forwards) :
-	axes{ a_right , a_up , a_forwards }
+Matrix3::Matrix3(const Vector3& a_right, const Vector3& a_forwards, const Vector3& a_position) :
+	axes{ a_right , a_forwards , a_position }
 {}
 
 

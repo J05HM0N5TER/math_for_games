@@ -94,7 +94,7 @@ Matrix4 Matrix4::operator+(const Matrix4 & a_rhs) const
 
 Matrix4 & Matrix4::operator+=(const Matrix4 & a_rhs)
 {
-	*this = *this - a_rhs;
+	*this = *this + a_rhs;
 
 	return *this;
 }

@@ -55,7 +55,6 @@ public:
 
 	Vector4 operator * (const Vector4& a_rhs) const;
 
-	// NOT FINISHED
 	Matrix4& operator *= (const Matrix4& a_rhs);
 
 	Matrix4 operator + (const Matrix4& a_rhs) const;

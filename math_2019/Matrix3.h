@@ -19,7 +19,7 @@ public:
 		struct
 		{
 			Vector3 right;
-			Vector3 up;
+			Vector3 forwards;
 			Vector3 position;
 		};
 		float _1D[9];
@@ -33,9 +33,7 @@ public:
 			const float a_m10 = 0.0f, const float a_m11 = 1.0f, const float a_m12 = 0.0f, // Column2
 			const float a_m20 = 0.0f, const float a_m21 = 0.0f, const float a_m22 = 1.0f);// Column3
 
-	Matrix3(const Vector3& a_right, const Vector3& a_up, const Vector3& a_forwards);
-
-
+	Matrix3(const Vector3& a_right, const Vector3& a_forwards, const Vector3& a_position);
 
 
 	//! \brief Casting mutable float* operator overloading.

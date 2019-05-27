@@ -126,7 +126,6 @@ void Application2D::update(float deltaTime)
 	// Update planets
 	sun->update(deltaTime);
 
-
 	m_timer += deltaTime;
 
 	// input example

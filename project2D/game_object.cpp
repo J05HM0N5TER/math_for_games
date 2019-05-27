@@ -1,8 +1,7 @@
 #include "game_object.h"
 
-
-
-game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
+game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, 
+	const float a_z_rotation, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
 	const float a_spin_speed /*= 0.0f*/, const float a_orbit_speed /*= 0.0f*/) :
 	m_renderer(a_renderer), m_rotation_speed(a_spin_speed), m_orbit_speed(a_orbit_speed), m_position(a_position),
 	m_current_rotation(a_z_rotation), m_size(a_size)
@@ -12,10 +11,17 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 
 	m_local_transform.setRotateZ(m_current_rotation);
 	m_local_transform.position = { a_position.x, a_position.y, 1.0f };
+
+	m_speed = 0.0f;
+	m_acceleration = 0.0f;
+	m_max_speed = 0.0f;
 }
 
 void game_object::update(const float a_delta_time)
 {
+	// Acceleration math.
+	//m_speed += m_acceleration * a_delta_time;
+	//m_local_transform.position = m_local_transform.forwards * m_speed * a_delta_time;
 
 
 	Matrix3 rotation_matrix;
@@ -140,4 +146,14 @@ void game_object::set_size(const Vector2 & a_size)
 const Vector2 & game_object::get_size() const
 {
 	return m_size;
+}
+
+void game_object::set_acceleration(const float & a_acceleration)
+{
+	m_acceleration = a_acceleration;
+}
+
+const float game_object::get_acceleration() const
+{
+	return m_acceleration;
 }

@@ -22,8 +22,8 @@ public:
 		struct
 		{
 			Vector3<T> right;
-			Vector3<T> up;
 			Vector3<T> forwards;
+			Vector3<T> position;
 		};
 		T _1D[9];
 		T _2D[3][3];
