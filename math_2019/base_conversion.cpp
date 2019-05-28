@@ -5,7 +5,7 @@
 int base_conversion::binary_string_to_integer(const char * a_binary_string)
 {
 	int bit_field = 0;
-	int string_length = strlen(a_binary_string);
+	size_t string_length = strlen(a_binary_string);
 	
 	for (size_t i = 0; i < string_length; i++)
 	{
