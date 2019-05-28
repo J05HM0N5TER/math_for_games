@@ -1,4 +1,8 @@
 #pragma once
+#ifndef ALIGHENED_BOUNDING_BOX_H
+#define ALIGHENED_BOUNDING_BOX_H
+
+
 #include "Vector2.h"
 #include "Collider.h"
 class aligned_bounding_box : public Collider
@@ -36,3 +40,4 @@ private:
 	};
 };
 
+#endif // !ALIGHENED_BOUNDING_BOX_H

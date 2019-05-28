@@ -1,4 +1,7 @@
 #pragma once
+#ifndef COLLIDER_H
+#define COLLIDER_H
+
 class Collider
 {
 public:
@@ -21,3 +24,4 @@ protected:
 	Collider(shape a_shape);
 };
 
+#endif // !COLLIDER_H

@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CIRCLE_H
+#define CIRCLE_H
+
 #include "Vector2.h"
 #include "Collider.h"
 class Circle : public Collider
@@ -24,4 +27,5 @@ private:
 	Vector2 m_position;
 };
 
+#endif // !CIRCLE_H
 

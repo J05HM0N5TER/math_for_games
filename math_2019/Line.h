@@ -1,4 +1,7 @@
 #pragma once
+#ifndef LINE_H
+#define LINE_H
+
 #include "Collider.h"
 #include "Vector2.h"
 class Line :
@@ -23,3 +26,4 @@ private:
 
 };
 
+#endif // !LINE_H

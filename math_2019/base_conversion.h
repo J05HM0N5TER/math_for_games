@@ -1,4 +1,7 @@
 #pragma once
+#ifndef BASE_CONVERSION_H
+#define BASE_CONVERSION_H
+
 class base_conversion
 {
 public:
@@ -35,3 +38,4 @@ public:
 	static void print_int_as_binary(const int a_bit_field, bool a_spaced = false);
 };
 
+#endif // !BASE_CONVERSION_H
