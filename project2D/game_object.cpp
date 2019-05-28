@@ -20,10 +20,21 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 void game_object::update(const float a_delta_time)
 {
 	// Acceleration math.
-	//m_speed += m_acceleration * a_delta_time;
-	//m_local_transform.position = m_local_transform.forwards * m_speed * a_delta_time;
+	m_speed += m_acceleration * a_delta_time;
+	// Limit speed to max speed and negative max speed.
+	if (m_speed > m_max_speed)
+	{
+		m_speed = m_max_speed;
+	}
+	else if (m_speed < -m_max_speed)
+	{
+		m_speed = -m_max_speed;
+	}
 
+	// Calculate based on speed.
+	m_local_transform.position += m_local_transform.forwards * m_speed * a_delta_time;
 
+	// Matrix that the transformations are applied to.
 	Matrix3 rotation_matrix;
 
 	// Rotate the object.
@@ -45,6 +56,7 @@ void game_object::update(const float a_delta_time)
 		m_world_transform = m_local_transform;
 	}
 
+	// loop though all children and call update for them.
 	for (size_t i = 0; i < m_children.size(); i++)
 	{
 		m_children[i]->update(a_delta_time);
@@ -55,6 +67,7 @@ void game_object::draw()
 {
 	m_renderer->drawSpriteTransformed3x3(m_texture, m_world_transform, m_size.x, m_size.y);
 
+	// loop though all children and call draw for them.
 	for (size_t i = 0; i < m_children.size(); i++)
 	{
 		m_children[i]->draw();
@@ -156,4 +169,14 @@ void game_object::set_acceleration(const float & a_acceleration)
 const float game_object::get_acceleration() const
 {
 	return m_acceleration;
+}
+
+void game_object::set_speed(const float & a_speed)
+{
+	m_speed = a_speed;
+}
+
+const float & game_object::get_speed() const
+{
+	return m_speed;
 }

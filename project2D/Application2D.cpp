@@ -96,29 +96,33 @@ bool Application2D::startup()
 
 void Application2D::shutdown() 
 {
-
+	// Delete font.
 	delete m_font;
+	// Delete renderer.
 	delete m_2dRenderer;
 
-   delete m_mars_texture;
-   delete m_uranus_texture;
-   delete m_jupiter_texture;
-   delete m_mercury_texture;
-   delete m_venus_texture;
-   delete m_saturn_texture;
-   delete m_earth_texture;
-   delete m_sun_texture;
-   delete m_moon_texture;
+	// ---Delete all textures---
+	delete m_mars_texture;
+	delete m_uranus_texture;
+	delete m_jupiter_texture;
+	delete m_mercury_texture;
+	delete m_venus_texture;
+	delete m_saturn_texture;
+	delete m_earth_texture;
+	delete m_sun_texture;
+	delete m_moon_texture;
+	
 
-   delete sun;
-   delete earth;
-   delete moon;
-   delete mars;
-   delete jupiter;
-   delete saturn;
-   delete mercury;
-   delete venus;
-   delete uranus;
+	// ---Delete all game_objects--
+	delete sun;
+	delete earth;
+	delete moon;
+	delete mars;
+	delete jupiter;
+	delete saturn;
+	delete mercury;
+	delete venus;
+	delete uranus;
 }
 
 void Application2D::update(float deltaTime)

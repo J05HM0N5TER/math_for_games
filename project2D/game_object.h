@@ -35,31 +35,27 @@ public:
 	// \brief Sets the orbit speed that doesn't get affected by the transforms of the parent objects.
 	void set_global_orbit(const float& a_orbit_speed);
 
-	// \brief Set the local orbit speed.
+	// -Orbit speed setters and getters-
 	void set_orbit_speed(const float& a_orbit_speed);
-	// \brief Get the local orbit speed.
 	const float& get_orbit_speed() const;
 
 	// \brief Gets the local rotation speed.
 	const float& get_rotation_speed() const;
 
-	// \brief Sets the parent for the object.
+	// -Parent setters and getters-
 	void set_parent(game_object* a_parent);
-	// \brief Gets a pointer to the parent.
 	game_object* get_parent() const;
 
-	// \brief Sets the display size of the object.
+	// -Display size setters and getters-
 	void set_size(const Vector2& a_size);
-	// \brief Gets the display size of the object.
 	const Vector2& get_size() const;
 
-	// Set acceleration.
+	// -Acceleration setters and getters-
 	void set_acceleration(const float & a_acceleration);
-	// Get acceleration.
 	const float get_acceleration() const;
 
+	// -Speed setters and getters-
 	void set_speed(const float& a_speed);
-
 	const float & get_speed() const;
 
 private:

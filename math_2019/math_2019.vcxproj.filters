@@ -30,6 +30,9 @@
     <ClCompile Include="Matrix4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="base_conversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Matrix4(template).h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base_conversion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
