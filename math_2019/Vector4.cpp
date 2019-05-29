@@ -1,11 +1,8 @@
 #include "Vector4.h"
 
-Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
-{};
-
-Vector4::Vector4(const float a_x, const float a_y, 
-	const float a_z, const float a_w) : 
-	data {a_x, a_y, a_z, a_w}
+Vector4::Vector4(const float a_x /*= 0.0f*/, const float a_y /*= 0.0f*/,
+	const float a_z /*= 0.0f*/, const float a_w /*= 0.0f*/) :
+	data{ a_x, a_y, a_z, a_w }
 {}
 
 float& Vector4::operator[] (const size_t a_index)
@@ -143,7 +140,7 @@ Vector4 Vector4::cross(const Vector4& a_Vector4) const
 		y * a_Vector4.z - z * a_Vector4.y,
 		z * a_Vector4.x - x * a_Vector4.z,
 		x * a_Vector4.y - y * a_Vector4.x,
-		w 
+		w
 	};
 }
 

@@ -8,8 +8,7 @@
 class Vector2
 {
 public:
-	Vector2();
-	Vector2(float a_x, float a_y);
+	Vector2(float a_x = 0.0f, float a_y = 0.0f);
 
 	union
 	{

@@ -1,12 +1,12 @@
-#include "Collider.h"
+#include "collider.h"
 
 
 
-const Collider::shape Collider::get_shape() const
+const collider::shape collider::get_shape() const
 {
 	return m_shape;
 }
 
-Collider::Collider(shape a_shape) : m_shape(a_shape)
+collider::collider(shape a_shape) : m_shape(a_shape)
 {}
 

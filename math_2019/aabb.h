@@ -4,14 +4,14 @@
 
 
 #include "Vector2.h"
-#include "Collider.h"
-class aligned_bounding_box : public Collider
+#include "collider.h"
+class aabb : public collider
 {
 public:
 
 	static const Vector2 DEFAULT_EXTENTS;
 
-	aligned_bounding_box(const Vector2 & a_position = Vector2(),
+	aabb(const Vector2 & a_position = Vector2(),
 		const Vector2 & a_extents = DEFAULT_EXTENTS);
 
 	const Vector2 get_position() const;

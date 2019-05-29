@@ -1,10 +1,6 @@
 #include "Vector2.h"
-Vector2::Vector2() : x(0.0f), y(0.0f)
-{
-}
 
-
-Vector2::Vector2(float a_x, float a_y) : data{ a_x, a_y }
+Vector2::Vector2(float a_x /*= 0.0f*/, float a_y /*= 0.0f*/) : data{ a_x, a_y }
 {
 }
 
@@ -126,7 +122,7 @@ float Vector2::dot(const Vector2 a_vector_a, const Vector2 a_vector_b)
 
 Vector2 Vector2::right() const
 {
-	return Vector2(y, -x);
+	return Vector2(-y, x);
 }
 
 Vector2 operator*(const float & a_lhs, const Vector2 & a_rhs)

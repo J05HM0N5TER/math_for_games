@@ -80,7 +80,7 @@ bool Application2D::startup()
 	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, { 15.0f * size_adjustment, 15.0f * size_adjustment });
 	moon->set_parent(earth);
 	//moon->m_orbit_speed = -moon->get_global_rotation() + 0.5 * size_adjustment;
-	moon->set_global_orbit(0.5 * size_adjustment);
+	moon->set_global_orbit(0.5f * size_adjustment);
 	moon->set_global_rotation(moon->get_parent()->get_rotation_speed());
 
 

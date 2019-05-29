@@ -8,8 +8,8 @@
 class Vector4
 {
 public:
-	Vector4();
-	Vector4(const float a_x, const float a_y, const float a_z, const float a_w);
+	Vector4(const float a_x = 0.0f, const float a_y = 0.0f, 
+		const float a_z = 0.0f, const float a_w = 0.0f);
 
 	union
 	{

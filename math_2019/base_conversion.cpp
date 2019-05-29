@@ -11,7 +11,7 @@ int base_conversion::binary_string_to_integer(const char * a_binary_string)
 	{
 		if (a_binary_string[i] == '1')
 		{
-			set_bit(bit_field, string_length - i - 1, true);
+			set_bit(bit_field, char(string_length) - char(i) - 1, true);
 		}
 	}
 
@@ -24,7 +24,7 @@ void base_conversion::integer_to_binary_string(char * a_binary_string, int value
 
 	for (size_t i = 0; i < 32; i++)
 	{
-		a_binary_string[31 - i] = get_bit(value, i) ? '1' : '0';
+		a_binary_string[31 - i] = get_bit(value, char(i)) ? '1' : '0';
 	}
 }
 

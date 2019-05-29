@@ -29,7 +29,7 @@ public:
 
 	//void set_rotation(const float& a_position);
 	// \brief Gets the rotation of the object with the transforms of the parents into account.
-	const float& get_global_rotation() const;
+	const float get_global_rotation() const;
 	// \brief Sets the rotation that doesn't get affected by the transforms of the parent objects.
 	void set_global_rotation(const float& a_rotaion_speed);
 	// \brief Sets the orbit speed that doesn't get affected by the transforms of the parent objects.

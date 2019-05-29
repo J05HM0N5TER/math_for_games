@@ -3,14 +3,14 @@
 #define CIRCLE_H
 
 #include "Vector2.h"
-#include "Collider.h"
-class Circle : public Collider
+#include "collider.h"
+class circle : public collider
 {
 public:
 
 	static const float DEFAULT_RADUS;
 
-	Circle(const Vector2 & a_position = Vector2(), const float a_radus = DEFAULT_RADUS);
+	circle(const Vector2 & a_position = Vector2(), const float a_radus = DEFAULT_RADUS);
 
 	/*	\brief Sets the radus to the absolute value of the argument.
 		\param The new radus as a float

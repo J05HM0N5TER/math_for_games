@@ -65,7 +65,8 @@ void game_object::update(const float a_delta_time)
 
 void game_object::draw()
 {
-	m_renderer->drawSpriteTransformed3x3(m_texture, m_world_transform, m_size.x, m_size.y);
+	m_renderer->drawSpriteTransformed3x3(m_texture, 
+		m_world_transform, m_size.x, m_size.y);
 
 	// loop though all children and call draw for them.
 	for (size_t i = 0; i < m_children.size(); i++)
@@ -90,11 +91,12 @@ void game_object::set_local_position(const Vector2 & a_position)
 	m_position = a_position;
 }
 
-const float& game_object::get_global_rotation() const
+const float game_object::get_global_rotation() const
 {
 	game_object* current_game_object;
 	float rotaion_counter = 0.0f;
 
+	// Checks if the game_object has an assigned parent.
 	if (m_parent)
 	{
 		current_game_object = this->m_parent;

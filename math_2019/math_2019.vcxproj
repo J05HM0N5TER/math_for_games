@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aligned_bounding_box.cpp" />
+    <ClCompile Include="aabb.cpp" />
     <ClCompile Include="base_conversion.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Collision_manager.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Matrix3.cpp" />
     <ClCompile Include="Matrix4.cpp" />
@@ -31,10 +32,11 @@
     <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aligned_bounding_box.h" />
+    <ClInclude Include="aabb.h" />
     <ClInclude Include="base_conversion.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Collision_manager.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Matrix3(template).h" />
     <ClInclude Include="Matrix3.h" />

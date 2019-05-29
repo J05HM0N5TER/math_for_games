@@ -8,8 +8,7 @@
 class Vector3
 {
 public:
-	Vector3();
-	Vector3(const float a_x, const float a_y, const float a_z);
+	Vector3(const float a_x = 0.0f, const float a_y = 0.0f, const float a_z = 0.0f);
 
 	union
 	{

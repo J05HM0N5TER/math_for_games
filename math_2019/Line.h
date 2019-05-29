@@ -2,16 +2,16 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include "Collider.h"
+#include "collider.h"
 #include "Vector2.h"
-class Line :
-	public Collider
+class line :
+	public collider
 {
 public:
 
 	static const Vector2 DEFAULT_NORMAL;
 
-	Line(const Vector2 & a_normal = { 1.0f, 1.0f },
+	line(const Vector2 & a_normal = DEFAULT_NORMAL,
 		const float a_distance = 0.0f);
 
 	const Vector2 get_normal() const;
