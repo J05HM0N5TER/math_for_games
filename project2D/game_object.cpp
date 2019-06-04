@@ -2,7 +2,7 @@
 #include <iostream>
 
 game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, 
-	const float a_z_rotation, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
+	const float a_z_rotation /*= 0.0f*/, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
 	const float a_spin_speed /*= 0.0f*/, const float a_orbit_speed /*= 0.0f*/) :
 	m_renderer(a_renderer), m_rotation_speed(a_spin_speed), m_orbit_speed(a_orbit_speed),
 	m_current_rotation(a_z_rotation), m_size(a_size)
@@ -17,10 +17,11 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 	m_acceleration = 0.0f;
 	m_max_speed = 500.0f;
 	m_collider = nullptr;
+	is_valid = true;
 }
 
 
-void game_object::update_transform(const float a_delta_time)
+void game_object::update(const float a_delta_time)
 {
 	// Acceleration math.
 	m_speed += m_acceleration * a_delta_time;
@@ -72,11 +73,6 @@ void game_object::update_transform(const float a_delta_time)
 	{
 		m_collider->set_position({ m_world_transform.position.x, m_world_transform.position.y });
 	}
-}
-
-void game_object::update(const float a_delta_time)
-{
-	update_transform(a_delta_time);
 }
 
 void game_object::draw()

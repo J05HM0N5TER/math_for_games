@@ -6,7 +6,6 @@
 #include <vector>
 #include "Input.h"
 #include "game_object.h"
-#include "player.h"
 
 class Application2D : public aie::Application 
 {
@@ -49,7 +48,7 @@ protected:
 
 	// ship
 	aie::Texture*		m_player_texture;
-	player* m_player;
+	game_object* m_player;
 
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;

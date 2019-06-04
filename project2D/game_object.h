@@ -12,11 +12,11 @@
 class game_object
 {
 public:
-	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation, 
+	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation = 0.0f, 
 		const Vector2 a_size = { 0.0f, 0.0f }, const float a_spin_speed = 0.0f, const float a_orbit_speed = 0.0f);
 
 	// \brief Updates the position for the game_object.
-	virtual void update(const float a_delta_time);
+	void update(const float a_delta_time);
 
 
 	// \brief Draws the object on screen.
@@ -65,10 +65,10 @@ public:
 	void set_collider(circle * a_colider);
 	const circle* get_collider() const;
 
+	// If the game_objetct is still valid.
+	bool is_valid;
+
 protected:
-
-	void update_transform(const float a_delta_time);
-
 
 	// The collision detector for the game_object.
 	circle* m_collider;
@@ -85,7 +85,7 @@ protected:
 
 	// The current linear speed (DOES NOT INCLUDE PARENT TRANSFORM AND ORBIT CHANGES.)
 	float m_speed;
-	// The lenear acceleration over time.
+	// The linear acceleration over time.
 	float m_acceleration;
 	// The maximum linear speed that the object is allowed to achieve.
 	float m_max_speed;
