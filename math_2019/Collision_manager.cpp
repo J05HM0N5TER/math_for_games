@@ -23,8 +23,6 @@ bool collision_manager::aabb_to_circle(const aabb & a_aabb, const circle & a_cir
 	Vector2 displacement = clamped_center - a_circle.get_position();
 
 	return (displacement.magnitude() < a_circle.get_radus());
-
-	return false;
 }
 
 bool collision_manager::circle_to_line(const circle & a_circle, 

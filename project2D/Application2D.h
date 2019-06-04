@@ -4,9 +4,12 @@
 #include "Application.h"
 #include "Renderer2D.h"
 #include <vector>
+#include "Input.h"
 #include "game_object.h"
+#include "player.h"
 
-class Application2D : public aie::Application {
+class Application2D : public aie::Application 
+{
 public:
 
 	Application2D();
@@ -20,7 +23,7 @@ public:
 
 protected:
 
-	// Planet
+	// Planets
 	game_object* sun;
 	game_object* earth;
 	game_object* moon;
@@ -30,6 +33,8 @@ protected:
 	game_object* mercury;
 	game_object* venus;
 	game_object* uranus;
+
+	std::vector<game_object*> planets;
 
 	// Planet textures.
 	aie::Texture*		m_mars_texture;
@@ -42,8 +47,13 @@ protected:
 	aie::Texture*		m_sun_texture;
 	aie::Texture*		m_moon_texture;
 
+	// ship
+	aie::Texture*		m_player_texture;
+	player* m_player;
+
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
+	aie::Input* input;
 
 	float m_timer;
 };
