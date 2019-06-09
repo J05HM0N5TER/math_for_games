@@ -20,7 +20,6 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 	is_valid = true;
 }
 
-
 void game_object::update(const float a_delta_time)
 {
 	// Acceleration math.
@@ -209,5 +208,15 @@ void game_object::set_collider(circle* a_colider)
 const circle* game_object::get_collider() const
 {
 	return m_collider;
+}
+
+void game_object::set_texture(aie::Texture * a_texture)
+{
+	m_texture = a_texture;
+}
+
+const aie::Texture * game_object::get_texture() const
+{
+	return m_texture;
 }
 

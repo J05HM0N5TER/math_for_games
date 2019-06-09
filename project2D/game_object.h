@@ -15,6 +15,7 @@ public:
 	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation = 0.0f, 
 		const Vector2 a_size = { 0.0f, 0.0f }, const float a_spin_speed = 0.0f, const float a_orbit_speed = 0.0f);
 
+
 	// \brief Updates the position for the game_object.
 	void update(const float a_delta_time);
 
@@ -64,6 +65,10 @@ public:
 	// -Getters and setters for collider-
 	void set_collider(circle * a_colider);
 	const circle* get_collider() const;
+
+	// -Getters and setters for texture-
+	void set_texture(aie::Texture* a_texture);
+	const aie::Texture* get_texture() const;
 
 	// If the game_objetct is still valid.
 	bool is_valid;
