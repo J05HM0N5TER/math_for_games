@@ -113,12 +113,16 @@ const float game_object::get_global_rotation() const
 	{
 		current_game_object = this->m_parent;
 
+		// While there is a parent.
 		while (current_game_object != nullptr)
 		{
+			// Add to the rotation_counter.
 			rotaion_counter += current_game_object->m_orbit_speed + current_game_object->m_rotation_speed;
+			// Go to next parent.
 			current_game_object = current_game_object->get_parent();
 		}
 	}
+	// Add the local rotation speed and orbit speed.
 	rotaion_counter += m_rotation_speed + m_orbit_speed;
 
 	return rotaion_counter;
