@@ -106,11 +106,10 @@ bool Application2D::startup()
 
 	input = aie::Input::getInstance();
 
-
 	// Ship
 	m_player_texture = new aie::Texture("./textures/ship.png");
-	m_player = new game_object(m_2dRenderer, m_player_texture, { 0, 0 }, 0.0f, { 100, 100 });
-
+	m_player = new game_object(m_2dRenderer, m_player_texture, { 0, 0 }, 0.0f, { 85, 85 });
+	m_player->set_collider(new circle(m_player->get_postion(), m_player->get_size().x));
 
 	m_timer = 0;
 
@@ -162,6 +161,8 @@ void Application2D::update(float deltaTime)
 
 	m_timer += deltaTime;
 
+
+	// ---Player controls---
 	float acceleration_speed = 50.0f;
 	float rotation_speed = 5.0f;
 
@@ -193,13 +194,13 @@ void Application2D::update(float deltaTime)
 		m_player->set_rotation_speed(0.0f);
 	}
 
-
+	// ---Collision detection---
 	if (m_player->is_valid)
 	{
 		m_player->update(deltaTime);
 		for (size_t i = 0; i < planets.size(); i++)
 		{
-			if (planets[i]->get_collider() &&
+			if (planets[i]->get_collider() && m_player->get_collider() &&
 				collision_manager::circle_to_circle(*m_player->get_collider(), *planets[i]->get_collider()))
 			{
 				m_player->is_valid = false;
@@ -248,6 +249,7 @@ void Application2D::draw()
 	// Draw planets.
 	sun->draw();
 
+	// Draw player/ship
 	m_player->draw();
 
 	// Draw line
