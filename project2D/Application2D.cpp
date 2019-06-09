@@ -1,5 +1,4 @@
 #include "Application2D.h"
-#include "Texture.h"
 #include "Font.h"
 #include "Collision_manager.h"
 #include <iostream>
@@ -122,7 +121,7 @@ bool Application2D::startup()
 
 	// -Ship-
 	m_player_texture = new aie::Texture("./textures/ship.png");
-	m_player = new game_object(m_2dRenderer, m_player_texture, { 0, 0 }, 0.0f, { 85, 85 });
+	m_player = new game_object(m_2dRenderer, m_player_texture, { 100, 100 }, 0.0f, { 85, 85 });
 	m_player->set_collider(new circle(m_player->get_postion(), m_player->get_size().x / 2));
 
 	m_timer = 0;
@@ -183,6 +182,10 @@ void Application2D::update(float deltaTime)
 	// Update timer.
 	m_timer += deltaTime;
 
+	if (input->isKeyDown(aie::INPUT_KEY_R))
+	{
+		m_player->is_valid = true;
+	}
 
 	// ---Player controls---
 	float acceleration_speed = 50.0f;
@@ -274,11 +277,18 @@ void Application2D::draw()
 	// Draw line
 	//m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
 
+	// Calculate text position.
+	char escape_text[] = "Press ESC to quit!";
+	short arrow_instruction_position = 720 - 64 - m_font->getStringHeight(escape_text);
+	char restart_text[] = "R to restart plane.";
+
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
-	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
+	m_2dRenderer->drawText(m_font, escape_text, 0, 720 - 64);
+	m_2dRenderer->drawText(m_font, "Arrow keys to move plane.", 0, arrow_instruction_position);
+	m_2dRenderer->drawText(m_font, restart_text, 0, arrow_instruction_position - m_font->getStringHeight(restart_text));
 
 	// done drawing sprites
 	m_2dRenderer->end();
