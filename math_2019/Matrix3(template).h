@@ -1,6 +1,7 @@
 #pragma once
 #ifndef MATRIX3_TEMPLATE_H
 #define MATRIX3_TEMPLATE_H
+
 #include "Vector3(template).h"
 
 // UNTESTED!

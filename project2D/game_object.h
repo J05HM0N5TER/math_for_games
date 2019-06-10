@@ -2,6 +2,7 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
+#include "Circle.h"
 #include "Matrix3.h"
 #include "Renderer2D.h"
 #include "Vector2.h"
@@ -11,11 +12,13 @@
 class game_object
 {
 public:
-	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation, 
+	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation = 0.0f, 
 		const Vector2 a_size = { 0.0f, 0.0f }, const float a_spin_speed = 0.0f, const float a_orbit_speed = 0.0f);
+
 
 	// \brief Updates the position for the game_object.
 	void update(const float a_delta_time);
+
 
 	// \brief Draws the object on screen.
 	void draw();
@@ -41,6 +44,7 @@ public:
 
 	// \brief Gets the local rotation speed.
 	const float& get_rotation_speed() const;
+	void set_rotation_speed(const float a_rotation_speed);
 
 	// -Parent setters and getters-
 	void set_parent(game_object* a_parent);
@@ -51,17 +55,32 @@ public:
 	const Vector2& get_size() const;
 
 	// -Acceleration setters and getters-
-	void set_acceleration(const float & a_acceleration);
+	void set_acceleration(const float a_acceleration);
 	const float get_acceleration() const;
 
 	// -Speed setters and getters-
 	void set_speed(const float& a_speed);
 	const float & get_speed() const;
 
-private:
+	// -Getters and setters for collider-
+	void set_collider(circle * a_colider);
+	const circle* get_collider() const;
 
-	// \brief Added a child to the object.
-	void add_child(game_object* a_child);
+	// -Getters and setters for texture-
+	void set_texture(aie::Texture* a_texture);
+	const aie::Texture* get_texture() const;
+
+	// Getters and setters for max speed.
+	void set_max_speed(const float a_max_speed);
+	const float get_max_speed() const;
+
+	// If the game_objetct is still valid.
+	bool is_valid;
+
+protected:
+
+	// The collision detector for the game_object.
+	circle* m_collider;
 
 	// The transform that has all the parents transforms taken into account.
 	Matrix3 m_world_transform;
@@ -75,10 +94,20 @@ private:
 
 	// The current linear speed (DOES NOT INCLUDE PARENT TRANSFORM AND ORBIT CHANGES.)
 	float m_speed;
-	// The lenear acceleration over time.
+	// The linear acceleration over time.
 	float m_acceleration;
 	// The maximum linear speed that the object is allowed to achieve.
 	float m_max_speed;
+
+
+	// The size the object will be displayed at.
+	Vector2 m_size;
+
+	// The current local rotation.
+	float m_current_rotation;
+
+	// The parent that this object has to take into account when creating the world_transform.
+	game_object* m_parent;
 
 	// What the object is being drawn as.
 	aie::Texture* m_texture;
@@ -86,19 +115,13 @@ private:
 	// The pointer to the renderer so it can draw itself.
 	aie::Renderer2D* m_renderer;
 
-	// The size the object will be displayed at.
-	Vector2 m_size;
-
-	// The difference in position between the parent and this object.
-	Vector2 m_position;
-	// The current local rotation.
-	float m_current_rotation;
-
-	// The parent that this object has to take into account when creating the world_transform.
-	game_object* m_parent;
+private:
 
 	// A vector of all the object that are using this objects transform in there calculations for there world_transform.
 	std::vector<game_object*> m_children;
+
+	// \brief Added a child to the object.
+	void add_child(game_object* a_child);
 };
 
 #endif // !GAME_OBJECT_H

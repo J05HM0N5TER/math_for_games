@@ -1,6 +1,7 @@
 #pragma once
 #ifndef MATRIX4_H
 #define MATRIX4_H
+
 #include "Vector4.h"
 
 class Matrix4

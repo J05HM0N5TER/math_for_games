@@ -1,9 +1,10 @@
 #include "game_object.h"
+#include <iostream>
 
 game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, 
-	const float a_z_rotation, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
+	const float a_z_rotation /*= 0.0f*/, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
 	const float a_spin_speed /*= 0.0f*/, const float a_orbit_speed /*= 0.0f*/) :
-	m_renderer(a_renderer), m_rotation_speed(a_spin_speed), m_orbit_speed(a_orbit_speed), m_position(a_position),
+	m_renderer(a_renderer), m_rotation_speed(a_spin_speed), m_orbit_speed(a_orbit_speed),
 	m_current_rotation(a_z_rotation), m_size(a_size)
 {
 	m_texture = a_texture;
@@ -14,7 +15,9 @@ game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, c
 
 	m_speed = 0.0f;
 	m_acceleration = 0.0f;
-	m_max_speed = 0.0f;
+	m_max_speed = 500.0f;
+	m_collider = nullptr;
+	is_valid = true;
 }
 
 void game_object::update(const float a_delta_time)
@@ -30,6 +33,8 @@ void game_object::update(const float a_delta_time)
 	{
 		m_speed = -m_max_speed;
 	}
+
+
 
 	// Calculate based on speed.
 	m_local_transform.position += m_local_transform.forwards * m_speed * a_delta_time;
@@ -61,6 +66,12 @@ void game_object::update(const float a_delta_time)
 	{
 		m_children[i]->update(a_delta_time);
 	}
+
+	// Update position for collider.
+	if (m_collider)
+	{
+		m_collider->set_position({ m_world_transform.position.x, m_world_transform.position.y });
+	}
 }
 
 void game_object::draw()
@@ -82,13 +93,14 @@ const Matrix3 & game_object::get_world_matrix() const
 
 const Vector2 & game_object::get_postion() const
 {
-	return m_position;
+	return { m_local_transform.position.x, m_local_transform.position.y };
 }
 
 
 void game_object::set_local_position(const Vector2 & a_position)
 {
-	m_position = a_position;
+	m_local_transform.position.x = a_position.x;
+	m_local_transform.position.y = a_position.y;
 }
 
 const float game_object::get_global_rotation() const
@@ -101,12 +113,16 @@ const float game_object::get_global_rotation() const
 	{
 		current_game_object = this->m_parent;
 
+		// While there is a parent.
 		while (current_game_object != nullptr)
 		{
+			// Add to the rotation_counter.
 			rotaion_counter += current_game_object->m_orbit_speed + current_game_object->m_rotation_speed;
+			// Go to next parent.
 			current_game_object = current_game_object->get_parent();
 		}
 	}
+	// Add the local rotation speed and orbit speed.
 	rotaion_counter += m_rotation_speed + m_orbit_speed;
 
 	return rotaion_counter;
@@ -137,6 +153,11 @@ const float & game_object::get_rotation_speed() const
 	return m_rotation_speed;
 }
 
+void game_object::set_rotation_speed(const float a_rotation_speed)
+{
+	m_rotation_speed = a_rotation_speed;
+}
+
 void game_object::set_parent(game_object * a_parent)
 {
 	m_parent = a_parent;
@@ -163,7 +184,7 @@ const Vector2 & game_object::get_size() const
 	return m_size;
 }
 
-void game_object::set_acceleration(const float & a_acceleration)
+void game_object::set_acceleration(const float  a_acceleration)
 {
 	m_acceleration = a_acceleration;
 }
@@ -182,3 +203,34 @@ const float & game_object::get_speed() const
 {
 	return m_speed;
 }
+
+void game_object::set_collider(circle* a_colider)
+{
+	m_collider = a_colider;
+}
+
+const circle* game_object::get_collider() const
+{
+	return m_collider;
+}
+
+void game_object::set_texture(aie::Texture * a_texture)
+{
+	m_texture = a_texture;
+}
+
+const aie::Texture * game_object::get_texture() const
+{
+	return m_texture;
+}
+
+void game_object::set_max_speed(const float a_max_speed)
+{
+	m_max_speed = a_max_speed;
+}
+
+const float game_object::get_max_speed() const
+{
+	return m_max_speed;
+}
+

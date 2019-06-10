@@ -23,8 +23,6 @@ bool collision_manager::aabb_to_circle(const aabb & a_aabb, const circle & a_cir
 	Vector2 displacement = clamped_center - a_circle.get_position();
 
 	return (displacement.magnitude() < a_circle.get_radus());
-
-	return false;
 }
 
 bool collision_manager::circle_to_line(const circle & a_circle, 
@@ -39,8 +37,8 @@ bool collision_manager::circle_to_line(const circle & a_circle,
 
 bool collision_manager::aabb_to_line(const aabb & a_aabb, const line & a_line)
 {
-	// #1 kiio eacg cirber abd /*Typing is hard?*/ bit product the distance
-	//		then the furthest negative distance is the corner of the gratest overlap.
+	// #1 for each circle bit product the distance
+	//		then the furthest negative distance is the corner of the greatest overlap.
 	//float position_dot_normal = (a_aabb.get_max().dot(a_line.get_normal()));
 	//float distance = position_dot_normal - a_line.get_distance();
 
