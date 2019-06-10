@@ -1,6 +1,7 @@
 #pragma once
 #ifndef MATRIX4_TEMPLATE_H
 #define MATRIX4_TEMPLATE_H
+
 #include "Vector4(template).h"
 
 // UNTESTED!

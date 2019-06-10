@@ -1,4 +1,7 @@
 #pragma once
+#ifndef COLLISION_MANAGER_H
+#define COLLISION_MANAGER_H
+
 #include "circle.h"
 #include "aabb.h"
 #include "line.h"
@@ -28,3 +31,4 @@ private:
 		const Vector2 & a_max);
 };
 
+#endif // !COLLISION_MANAGER_H
