@@ -70,6 +70,10 @@ public:
 	void set_texture(aie::Texture* a_texture);
 	const aie::Texture* get_texture() const;
 
+	// Getters and setters for max speed.
+	void set_max_speed(const float a_max_speed);
+	const float get_max_speed() const;
+
 	// If the game_objetct is still valid.
 	bool is_valid;
 

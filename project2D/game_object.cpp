@@ -224,3 +224,13 @@ const aie::Texture * game_object::get_texture() const
 	return m_texture;
 }
 
+void game_object::set_max_speed(const float a_max_speed)
+{
+	m_max_speed = a_max_speed;
+}
+
+const float game_object::get_max_speed() const
+{
+	return m_max_speed;
+}
+
