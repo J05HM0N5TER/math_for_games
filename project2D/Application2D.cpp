@@ -279,7 +279,7 @@ void Application2D::draw()
 
 	// Calculate text position.
 	char escape_text[] = "Press ESC to quit!";
-	short arrow_instruction_position = 720 - 64 - m_font->getStringHeight(escape_text);
+	float arrow_instruction_position = 720 - 64 - m_font->getStringHeight(escape_text);
 	char restart_text[] = "R to restart plane.";
 
 	// output some text, uses the last used colour
