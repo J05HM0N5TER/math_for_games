@@ -145,11 +145,13 @@ void Application2D::shutdown()
 	if (m_player->get_collider())
 	{
 		delete m_player->get_collider();
+		m_player->set_collider(nullptr);
 	}
 	// Delete player texture.
 	if (m_player->get_texture())
 	{
 		delete m_player->get_texture();
+		m_player->set_texture(nullptr);
 	}
 	// Delete player.
 	delete m_player;
@@ -162,11 +164,13 @@ void Application2D::shutdown()
 		if (planets[i]->get_collider())
 		{
 			delete planets[i]->get_collider();
+			planets[i]->set_collider(nullptr);
 		}
 		// Delete texture.
 		if (planets[i]->get_texture())
 		{
 			delete planets[i]->get_texture();
+			planets[i]->set_texture(nullptr);
 		}
 		// Delete game_object.
 		game_object* temp = planets[i];
