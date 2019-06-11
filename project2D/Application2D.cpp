@@ -35,9 +35,10 @@ bool Application2D::startup()
 	float size_adjustment = 0.6f;
 
 	// -Sun-
-	sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, { 150.0f * size_adjustment, 150.0f * size_adjustment });
+	sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, 
+		{ 150.0f * size_adjustment, 150.0f * size_adjustment });
 	planets.push_back(sun);
-	sun->set_collider(new circle(sun->get_postion(), sun->get_size().x / 2));
+	sun->set_collider(new circle(sun->get_local_position(), sun->get_size().x / 2));
 
 	// -Mars-
 	// Create planet.
@@ -52,7 +53,7 @@ bool Application2D::startup()
 	// Add it to the vector of planets.
 	planets.push_back(mars);
 	// Set the collision for the planet.
-	mars->set_collider(new circle(mars->get_postion(), mars->get_size().x / 2));
+	mars->set_collider(new circle(mars->get_local_position(), mars->get_size().x / 2));
 
 	// -Jupiter-
 	jupiter = new game_object(m_2dRenderer, m_jupiter_texture, { 0.0f, 550.0f * size_adjustment }, 0.0f,
@@ -61,7 +62,7 @@ bool Application2D::startup()
 	jupiter->set_global_orbit(1.4f * size_adjustment);
 	jupiter->set_global_rotation(15.0f);
 	planets.push_back(jupiter);
-	jupiter->set_collider(new circle(jupiter->get_postion(), jupiter->get_size().x / 2));
+	jupiter->set_collider(new circle(jupiter->get_local_position(), jupiter->get_size().x / 2));
 
 	// -Uranus-
 	uranus = new game_object(m_2dRenderer, m_uranus_texture, { 0.0f, 750.0f * size_adjustment }, 0.0f,
@@ -70,7 +71,7 @@ bool Application2D::startup()
 	uranus->set_global_orbit(1.35f * size_adjustment);
 	uranus->set_global_rotation(15.0f);
 	planets.push_back(uranus);
-	uranus->set_collider(new circle(uranus->get_postion(), uranus->get_size().x / 2));
+	uranus->set_collider(new circle(uranus->get_local_position(), uranus->get_size().x / 2));
 
 	// -Saturn-
 	saturn = new game_object(m_2dRenderer, m_saturn_texture, { 0.0f, 650.0f * size_adjustment }, 0.0f,
@@ -79,7 +80,7 @@ bool Application2D::startup()
 	saturn->set_global_orbit(1.7f * size_adjustment);
 	saturn->set_global_rotation(0.0f);
 	planets.push_back(saturn);
-	saturn->set_collider(new circle(saturn->get_postion(), saturn->get_size().x / 2));
+	saturn->set_collider(new circle(saturn->get_local_position(), saturn->get_size().x / 2));
 
 	// -Mercury-
 	mercury = new game_object(m_2dRenderer, m_mercury_texture, { 0.0f, 150.0f * size_adjustment }, 0.0f,
@@ -88,7 +89,7 @@ bool Application2D::startup()
 	mercury->set_global_orbit(1.1f * size_adjustment);
 	mercury->set_global_rotation(15.0f);
 	planets.push_back(mercury);
-	mercury->set_collider(new circle(mercury->get_postion(), mercury->get_size().x / 2));
+	mercury->set_collider(new circle(mercury->get_local_position(), mercury->get_size().x / 2));
 
 	// -Venus-
 	venus = new game_object(m_2dRenderer, m_venus_texture, { 0.0f, 220.0f * size_adjustment }, 0.0f,
@@ -97,7 +98,7 @@ bool Application2D::startup()
 	venus->set_global_orbit(1.3f * size_adjustment);
 	venus->set_global_rotation(15.0f);
 	planets.push_back(venus);
-	venus->set_collider(new circle(venus->get_postion(), venus->get_size().x / 2));
+	venus->set_collider(new circle(venus->get_local_position(), venus->get_size().x / 2));
 
 	// -Earth-
 	earth = new game_object(m_2dRenderer, m_earth_texture, { 0.0f, 300.0f * size_adjustment }, 0.0f,
@@ -106,15 +107,16 @@ bool Application2D::startup()
 	earth->set_global_orbit(3.14159f / 2.0f * size_adjustment);
 	earth->set_global_rotation(15.0f);
 	planets.push_back(earth);
-	earth->set_collider(new circle(earth->get_postion(), earth->get_size().x / 2));
+	earth->set_collider(new circle(earth->get_local_position(), earth->get_size().x / 2));
 
 	// -The moon-
-	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, { 15.0f * size_adjustment, 15.0f * size_adjustment });
+	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, 
+		{ 15.0f * size_adjustment, 15.0f * size_adjustment });
 	moon->set_parent(earth);
 	moon->set_global_orbit(0.5f * size_adjustment);
 	moon->set_global_rotation(moon->get_parent()->get_rotation_speed());
 	planets.push_back(moon);
-	moon->set_collider(new circle(moon->get_postion(), moon->get_size().x / 2));
+	moon->set_collider(new circle(moon->get_local_position(), moon->get_size().x / 2));
 
 	// Set the input.
 	input = aie::Input::getInstance();
@@ -122,7 +124,7 @@ bool Application2D::startup()
 	// -Ship-
 	m_player_texture = new aie::Texture("./textures/ship.png");
 	m_player = new game_object(m_2dRenderer, m_player_texture, { 100, 100 }, 0.0f, { 85, 85 });
-	m_player->set_collider(new circle(m_player->get_postion(), m_player->get_size().x / 2));
+	m_player->set_collider(new circle(m_player->get_local_position(), m_player->get_size().x / 2));
 
 	m_timer = 0;
 
@@ -226,7 +228,8 @@ void Application2D::update(float deltaTime)
 		for (size_t i = 0; i < planets.size(); i++)
 		{
 			if (planets[i]->get_collider() && m_player->get_collider() &&
-				collision_manager::circle_to_circle(*m_player->get_collider(), *planets[i]->get_collider()))
+				collision_manager::circle_to_circle(*m_player->get_collider(), 
+					*planets[i]->get_collider()))
 			{
 				m_player->is_valid = false;
 			}
@@ -277,6 +280,16 @@ void Application2D::draw()
 	// Draw line
 	//m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
 
+	// Display text if player is dead.
+	if (!m_player->is_valid)
+	{
+		char died_text[] = "You died!";
+		m_2dRenderer->drawText(m_font, died_text, 
+			m_player->get_local_position().x - (m_font->getStringWidth(died_text) / 2), 
+			m_player->get_local_position().y + 64);
+
+	}
+
 	// Calculate text position.
 	char escape_text[] = "Press ESC to quit!";
 	float arrow_instruction_position = 720 - 64 - m_font->getStringHeight(escape_text);
@@ -287,8 +300,10 @@ void Application2D::draw()
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
 	m_2dRenderer->drawText(m_font, escape_text, 0, 720 - 64);
-	m_2dRenderer->drawText(m_font, "Arrow keys to move plane.", 0, arrow_instruction_position);
-	m_2dRenderer->drawText(m_font, restart_text, 0, arrow_instruction_position - m_font->getStringHeight(restart_text));
+	m_2dRenderer->drawText(m_font, "Arrow keys to move plane.", 
+		0, arrow_instruction_position);
+	m_2dRenderer->drawText(m_font, restart_text, 0, 
+		arrow_instruction_position - m_font->getStringHeight(restart_text));
 
 	// done drawing sprites
 	m_2dRenderer->end();

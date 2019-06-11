@@ -12,6 +12,18 @@
 class game_object
 {
 public:
+	// Delete default constructor becuase class doesn't work without renderer, texture and position.
+	game_object() = delete;
+
+	/*!	\brief Construtor for game_object.
+		\param a_renderer A pointer to the renderer that is being used in the project, this is used to draw itself on screen.
+		\param a_texture A pointer to the aie::Texture that you want the game_object to be displayed as.
+		\param a_position The position on screen that you want the game_object to be displayed at (does not include transformations).
+		\param a_z_rotation The rotation that you want the object to be placed at.
+		\param a_size The size that you want the game_object to be drawn at.
+		\prarm a_spin_speed The speed that the game_object spins around itself.
+		\param a_orbit_speed The speed that the game_object roatates around it's parent game_object.
+	*/
 	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation = 0.0f, 
 		const Vector2 a_size = { 0.0f, 0.0f }, const float a_spin_speed = 0.0f, const float a_orbit_speed = 0.0f);
 
@@ -25,10 +37,10 @@ public:
 
 	// \brief Returns the world position of the object.
 	const Matrix3& get_world_matrix() const;
-	const Vector2& get_postion() const;
 
 	//void set_position(const Vector2& a_position);
 	void set_local_position(const Vector2& a_position);
+	const Vector2 get_local_position() const;
 
 	//void set_rotation(const float& a_position);
 	// \brief Gets the rotation of the object with the transforms of the parents into account.
@@ -45,6 +57,7 @@ public:
 	// \brief Gets the local rotation speed.
 	const float& get_rotation_speed() const;
 	void set_rotation_speed(const float a_rotation_speed);
+
 
 	// -Parent setters and getters-
 	void set_parent(game_object* a_parent);
@@ -77,7 +90,7 @@ public:
 	// If the game_objetct is still valid.
 	bool is_valid;
 
-protected:
+private:
 
 	// The collision detector for the game_object.
 	circle* m_collider;
@@ -114,8 +127,6 @@ protected:
 
 	// The pointer to the renderer so it can draw itself.
 	aie::Renderer2D* m_renderer;
-
-private:
 
 	// A vector of all the object that are using this objects transform in there calculations for there world_transform.
 	std::vector<game_object*> m_children;
