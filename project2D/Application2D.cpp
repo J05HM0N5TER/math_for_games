@@ -35,88 +35,88 @@ bool Application2D::startup()
 	float size_adjustment = 0.6f;
 
 	// -Sun-
-	sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, 
-		{ 150.0f * size_adjustment, 150.0f * size_adjustment });
-	planets.push_back(sun);
-	sun->set_collider(new circle(sun->get_local_position(), sun->get_size().x / 2));
+	m_sun = new game_object(m_2dRenderer, m_sun_texture, { 640.0f, 340.0f }, 0.0f, 
+		{ 150.0f * size_adjustment, 150.0f * size_adjustment }, 0.25f);
+	m_planets.push_back(m_sun);
+	m_sun->set_collider(new circle(m_sun->get_local_position(), m_sun->get_size().x / 2));
 
 	// -Mars-
 	// Create planet.
-	mars = new game_object(m_2dRenderer, m_mars_texture, { 0.0f, 400.0f * size_adjustment }, 0.0f,
+	m_mars = new game_object(m_2dRenderer, m_mars_texture, { 0.0f, 400.0f * size_adjustment }, 0.0f,
 		{ 40.0f * size_adjustment, 40.0f * size_adjustment });
 	// Set the parent of the planet (where it gets the transform from to calculate world transform.)
-	mars->set_parent(sun);
+	m_mars->set_parent(m_sun);
 	// Set the global orbit speed (sets it so that the rotation of the parent doesn't effect it.)
-	mars->set_global_orbit(1.5f * size_adjustment);
+	m_mars->set_global_orbit(1.5f * size_adjustment);
 	// Set the global rotation speed (sets it so the orbit and other factors doesn't effect it.)
-	mars->set_global_rotation(15.0f);
+	m_mars->set_global_rotation(15.0f);
 	// Add it to the vector of planets.
-	planets.push_back(mars);
+	m_planets.push_back(m_mars);
 	// Set the collision for the planet.
-	mars->set_collider(new circle(mars->get_local_position(), mars->get_size().x / 2));
+	m_mars->set_collider(new circle(m_mars->get_local_position(), m_mars->get_size().x / 2));
 
 	// -Jupiter-
-	jupiter = new game_object(m_2dRenderer, m_jupiter_texture, { 0.0f, 550.0f * size_adjustment }, 0.0f,
+	m_jupiter = new game_object(m_2dRenderer, m_jupiter_texture, { 0.0f, 550.0f * size_adjustment }, 0.0f,
 		{ 60.0f * size_adjustment, 60.0f * size_adjustment });
-	jupiter->set_parent(sun);
-	jupiter->set_global_orbit(1.4f * size_adjustment);
-	jupiter->set_global_rotation(15.0f);
-	planets.push_back(jupiter);
-	jupiter->set_collider(new circle(jupiter->get_local_position(), jupiter->get_size().x / 2));
+	m_jupiter->set_parent(m_sun);
+	m_jupiter->set_global_orbit(1.4f * size_adjustment);
+	m_jupiter->set_global_rotation(15.0f);
+	m_planets.push_back(m_jupiter);
+	m_jupiter->set_collider(new circle(m_jupiter->get_local_position(), m_jupiter->get_size().x / 2));
 
 	// -Uranus-
-	uranus = new game_object(m_2dRenderer, m_uranus_texture, { 0.0f, 750.0f * size_adjustment }, 0.0f,
+	m_uranus = new game_object(m_2dRenderer, m_uranus_texture, { 0.0f, 750.0f * size_adjustment }, 0.0f,
 		{ 60.0f * size_adjustment, 60.0f * size_adjustment });
-	uranus->set_parent(sun);
-	uranus->set_global_orbit(1.35f * size_adjustment);
-	uranus->set_global_rotation(15.0f);
-	planets.push_back(uranus);
-	uranus->set_collider(new circle(uranus->get_local_position(), uranus->get_size().x / 2));
+	m_uranus->set_parent(m_sun);
+	m_uranus->set_global_orbit(1.35f * size_adjustment);
+	m_uranus->set_global_rotation(15.0f);
+	m_planets.push_back(m_uranus);
+	m_uranus->set_collider(new circle(m_uranus->get_local_position(), m_uranus->get_size().x / 2));
 
 	// -Saturn-
-	saturn = new game_object(m_2dRenderer, m_saturn_texture, { 0.0f, 650.0f * size_adjustment }, 0.0f,
+	m_saturn = new game_object(m_2dRenderer, m_saturn_texture, { 0.0f, 650.0f * size_adjustment }, 0.0f,
 		{ 120.0f * size_adjustment, 60.0f * size_adjustment });
-	saturn->set_parent(sun);
-	saturn->set_global_orbit(1.7f * size_adjustment);
-	saturn->set_global_rotation(0.0f);
-	planets.push_back(saturn);
-	saturn->set_collider(new circle(saturn->get_local_position(), saturn->get_size().x / 2));
+	m_saturn->set_parent(m_sun);
+	m_saturn->set_global_orbit(1.7f * size_adjustment);
+	m_saturn->set_global_rotation(0.0f);
+	m_planets.push_back(m_saturn);
+	m_saturn->set_collider(new circle(m_saturn->get_local_position(), m_saturn->get_size().x / 2));
 
 	// -Mercury-
-	mercury = new game_object(m_2dRenderer, m_mercury_texture, { 0.0f, 150.0f * size_adjustment }, 0.0f,
+	m_mercury = new game_object(m_2dRenderer, m_mercury_texture, { 0.0f, 150.0f * size_adjustment }, 0.0f,
 		{ 50.0f * size_adjustment, 50.0f * size_adjustment });
-	mercury->set_parent(sun);
-	mercury->set_global_orbit(1.1f * size_adjustment);
-	mercury->set_global_rotation(15.0f);
-	planets.push_back(mercury);
-	mercury->set_collider(new circle(mercury->get_local_position(), mercury->get_size().x / 2));
+	m_mercury->set_parent(m_sun);
+	m_mercury->set_global_orbit(1.1f * size_adjustment);
+	m_mercury->set_global_rotation(15.0f);
+	m_planets.push_back(m_mercury);
+	m_mercury->set_collider(new circle(m_mercury->get_local_position(), m_mercury->get_size().x / 2));
 
 	// -Venus-
-	venus = new game_object(m_2dRenderer, m_venus_texture, { 0.0f, 220.0f * size_adjustment }, 0.0f,
+	m_venus = new game_object(m_2dRenderer, m_venus_texture, { 0.0f, 220.0f * size_adjustment }, 0.0f,
 		{ 50.0f * size_adjustment, 50.0f * size_adjustment });
-	venus->set_parent(sun);
-	venus->set_global_orbit(1.3f * size_adjustment);
-	venus->set_global_rotation(15.0f);
-	planets.push_back(venus);
-	venus->set_collider(new circle(venus->get_local_position(), venus->get_size().x / 2));
+	m_venus->set_parent(m_sun);
+	m_venus->set_global_orbit(1.3f * size_adjustment);
+	m_venus->set_global_rotation(15.0f);
+	m_planets.push_back(m_venus);
+	m_venus->set_collider(new circle(m_venus->get_local_position(), m_venus->get_size().x / 2));
 
 	// -Earth-
-	earth = new game_object(m_2dRenderer, m_earth_texture, { 0.0f, 300.0f * size_adjustment }, 0.0f,
+	m_earth = new game_object(m_2dRenderer, m_earth_texture, { 0.0f, 300.0f * size_adjustment }, 0.0f,
 		{ 50.0f * size_adjustment, 50.0f * size_adjustment });
-	earth->set_parent(sun);
-	earth->set_global_orbit(3.14159f / 2.0f * size_adjustment);
-	earth->set_global_rotation(15.0f);
-	planets.push_back(earth);
-	earth->set_collider(new circle(earth->get_local_position(), earth->get_size().x / 2));
+	m_earth->set_parent(m_sun);
+	m_earth->set_global_orbit(3.14159f / 2.0f * size_adjustment);
+	m_earth->set_global_rotation(15.0f);
+	m_planets.push_back(m_earth);
+	m_earth->set_collider(new circle(m_earth->get_local_position(), m_earth->get_size().x / 2));
 
 	// -The moon-
-	moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, 
+	m_moon = new game_object(m_2dRenderer, m_moon_texture, { 0.0f, 30.0f * size_adjustment }, 0.0f, 
 		{ 15.0f * size_adjustment, 15.0f * size_adjustment });
-	moon->set_parent(earth);
-	moon->set_global_orbit(0.5f * size_adjustment);
-	moon->set_global_rotation(moon->get_parent()->get_rotation_speed());
-	planets.push_back(moon);
-	moon->set_collider(new circle(moon->get_local_position(), moon->get_size().x / 2));
+	m_moon->set_parent(m_earth);
+	m_moon->set_global_orbit(0.5f * size_adjustment);
+	m_moon->set_global_rotation(m_moon->get_parent()->get_rotation_speed());
+	m_planets.push_back(m_moon);
+	m_moon->set_collider(new circle(m_moon->get_local_position(), m_moon->get_size().x / 2));
 
 	// Set the input.
 	input = aie::Input::getInstance();
@@ -158,32 +158,31 @@ void Application2D::shutdown()
 
 
 	// For each planet
-	for (int i = (int)planets.size() - 1; i >= 0; i--)
+	for (int i = (int)m_planets.size() - 1; i >= 0; i--)
 	{
 		// Delete colider.
-		if (planets[i]->get_collider())
+		if (m_planets[i]->get_collider())
 		{
-			delete planets[i]->get_collider();
-			planets[i]->set_collider(nullptr);
+			delete m_planets[i]->get_collider();
+			m_planets[i]->set_collider(nullptr);
 		}
 		// Delete texture.
-		if (planets[i]->get_texture())
+		if (m_planets[i]->get_texture())
 		{
-			delete planets[i]->get_texture();
-			planets[i]->set_texture(nullptr);
+			delete m_planets[i]->get_texture();
+			m_planets[i]->set_texture(nullptr);
 		}
 		// Delete game_object.
-		game_object* temp = planets[i];
-		planets.erase(planets.begin() + i);
+		game_object* temp = m_planets[i];
+		m_planets.erase(m_planets.begin() + i);
 		delete temp;
 	}
-
 }
 
 void Application2D::update(float deltaTime)
 {
 	// Update planets
-	sun->update(deltaTime);
+	m_sun->update(deltaTime);
 
 	// Update timer.
 	m_timer += deltaTime;
@@ -191,6 +190,8 @@ void Application2D::update(float deltaTime)
 	if (input->isKeyDown(aie::INPUT_KEY_R))
 	{
 		m_player->is_valid = true;
+		m_player->set_local_position({ 100.0f, 100.0f });
+		m_player->reset_rotation();
 	}
 
 	// ---Player controls---
@@ -229,11 +230,11 @@ void Application2D::update(float deltaTime)
 	if (m_player->is_valid)
 	{
 		m_player->update(deltaTime);
-		for (size_t i = 0; i < planets.size(); i++)
+		for (size_t i = 0; i < m_planets.size(); i++)
 		{
-			if (planets[i]->get_collider() && m_player->get_collider() &&
+			if (m_planets[i]->get_collider() && m_player->get_collider() &&
 				collision_manager::circle_to_circle(*m_player->get_collider(), 
-					*planets[i]->get_collider()))
+					*m_planets[i]->get_collider()))
 			{
 				m_player->is_valid = false;
 			}
@@ -276,7 +277,7 @@ void Application2D::draw()
 	m_2dRenderer->begin();
 
 	// Draw planets.
-	sun->draw();
+	m_sun->draw();
 
 	// Draw player/ship
 	m_player->draw();

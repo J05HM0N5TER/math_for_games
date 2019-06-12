@@ -23,17 +23,17 @@ public:
 protected:
 
 	// Planets
-	game_object* sun;
-	game_object* earth;
-	game_object* moon;
-	game_object* mars;
-	game_object* jupiter;
-	game_object* saturn;
-	game_object* mercury;
-	game_object* venus;
-	game_object* uranus;
+	game_object* m_sun;
+	game_object* m_earth;
+	game_object* m_moon;
+	game_object* m_mars;
+	game_object* m_jupiter;
+	game_object* m_saturn;
+	game_object* m_mercury;
+	game_object* m_venus;
+	game_object* m_uranus;
 
-	std::vector<game_object*> planets;
+	std::vector<game_object*> m_planets;
 
 	// Planet textures.
 	aie::Texture*		m_mars_texture;

@@ -90,6 +90,8 @@ public:
 	// If the game_objetct is still valid.
 	bool is_valid;
 
+	void reset_rotation();
+
 private:
 
 	// The collision detector for the game_object.

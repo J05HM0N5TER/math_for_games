@@ -97,8 +97,8 @@ const Matrix3 & game_object::get_world_matrix() const
 
 void game_object::set_local_position(const Vector2 & a_position)
 {
-	m_world_transform.position.x = a_position.x;
-	m_world_transform.position.y = a_position.y;
+	m_local_transform.position.x = a_position.x;
+	m_local_transform.position.y = a_position.y;
 }
 
 const Vector2 game_object::get_local_position() const
@@ -235,5 +235,14 @@ void game_object::set_max_speed(const float a_max_speed)
 const float game_object::get_max_speed() const
 {
 	return m_max_speed;
+}
+
+void game_object::reset_rotation()
+{
+	m_local_transform._2D[0][0] = 0.0f;
+		m_local_transform._2D[0][1] = 0.0f;
+		m_local_transform._2D[1][0] = 0.0f;
+		m_local_transform._2D[1][1] = 0.0f;
+
 }
 
