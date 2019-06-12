@@ -187,15 +187,8 @@ void Application2D::update(float deltaTime)
 	// Update timer.
 	m_timer += deltaTime;
 
-	if (input->isKeyDown(aie::INPUT_KEY_R))
-	{
-		m_player->is_valid = true;
-		m_player->set_local_position({ 100.0f, 100.0f });
-		m_player->reset_rotation();
-	}
-
 	// ---Player controls---
-	float acceleration_speed = 50.0f;
+	float acceleration_speed = 100.0f;
 	float rotation_speed = 5.0f;
 
 	if (input->isKeyDown(aie::INPUT_KEY_UP))
@@ -265,6 +258,22 @@ void Application2D::update(float deltaTime)
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
+
+	// Restart button ('R').
+	if (input->isKeyDown(aie::INPUT_KEY_R))
+	{
+		// Set to the player being alive.
+		m_player->is_valid = true;
+
+		// Reset rotation for the player.
+		Matrix3 temp_transform_matrix;
+		temp_transform_matrix.setRotateZ(0.0f);
+		m_player->set_local_transform(temp_transform_matrix);
+		m_player->set_speed(0.0f);
+
+		// Set the position of the player to the start position.
+		m_player->set_local_position({ 100.0f, 100.0f });
+	}
 }
 
 void Application2D::draw()

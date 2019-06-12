@@ -87,10 +87,11 @@ public:
 	void set_max_speed(const float a_max_speed);
 	const float get_max_speed() const;
 
+	const Matrix3 & get_local_transform() const;
+	void set_local_transform(const Matrix3 & a_local_transform);
+
 	// If the game_objetct is still valid.
 	bool is_valid;
-
-	void reset_rotation();
 
 private:
 

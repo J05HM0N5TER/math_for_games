@@ -1,11 +1,11 @@
 #include "game_object.h"
 #include <iostream>
 
-game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, 
+game_object::game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position,
 	const float a_z_rotation /*= 0.0f*/, const Vector2 a_size /*= { 0.0f, 0.0f }*/,
 	const float a_spin_speed /*= 0.0f*/, const float a_orbit_speed /*= 0.0f*/) :
 	m_renderer(a_renderer), m_rotation_speed(a_spin_speed), m_orbit_speed(a_orbit_speed),
-	m_current_rotation(a_z_rotation), m_size(a_size), m_texture(a_texture), 
+	m_current_rotation(a_z_rotation), m_size(a_size), m_texture(a_texture),
 	m_parent(nullptr), m_collider(nullptr), is_valid(true), m_speed(0.0f), m_acceleration(0.0f), m_max_speed(500.0f)
 {
 	// Set the parent to null at start so it is easy to detect that there is not one set yet.
@@ -80,7 +80,7 @@ void game_object::update(const float a_delta_time)
 
 void game_object::draw()
 {
-	m_renderer->drawSpriteTransformed3x3(m_texture, 
+	m_renderer->drawSpriteTransformed3x3(m_texture,
 		m_world_transform, m_size.x, m_size.y);
 
 	// loop though all children and call draw for them.
@@ -237,12 +237,14 @@ const float game_object::get_max_speed() const
 	return m_max_speed;
 }
 
-void game_object::reset_rotation()
+const Matrix3 & game_object::get_local_transform() const
 {
-	m_local_transform._2D[0][0] = 0.0f;
-		m_local_transform._2D[0][1] = 0.0f;
-		m_local_transform._2D[1][0] = 0.0f;
-		m_local_transform._2D[1][1] = 0.0f;
-
+	return m_local_transform;
 }
+
+void game_object::set_local_transform(const Matrix3 & a_local_transform)
+{
+	m_local_transform = a_local_transform;
+}
+
 
