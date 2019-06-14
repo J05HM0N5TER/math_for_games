@@ -18,18 +18,19 @@ bool Application2D::startup()
 
 	m_2dRenderer = new aie::Renderer2D();
 
+	// When creating redistributable .exe change all '"../' to '"./'
 	// Set textures
-	m_sun_texture = new aie::Texture("./textures/the_sun.png");
-	m_moon_texture = new aie::Texture("./textures/the_moon.png");
-	m_earth_texture = new aie::Texture("./textures/earth.png");
-	m_mars_texture = new aie::Texture("./textures/mars.png");
-	m_jupiter_texture = new aie::Texture("./textures/jupiter.png");
-	m_saturn_texture = new aie::Texture("./textures/saturn.png");
-	m_mercury_texture = new aie::Texture("./textures/mercury.png");
-	m_venus_texture = new aie::Texture("./textures/venus.png");
-	m_uranus_texture = new aie::Texture("./textures/uranus.png");
+	m_sun_texture = new aie::Texture("../bin/textures/the_sun.png");
+	m_moon_texture = new aie::Texture("../bin/textures/the_moon.png");
+	m_earth_texture = new aie::Texture("../bin/textures/earth.png");
+	m_mars_texture = new aie::Texture("../bin/textures/mars.png");
+	m_jupiter_texture = new aie::Texture("../bin/textures/jupiter.png");
+	m_saturn_texture = new aie::Texture("../bin/textures/saturn.png");
+	m_mercury_texture = new aie::Texture("../bin/textures/mercury.png");
+	m_venus_texture = new aie::Texture("../bin/textures/venus.png");
+	m_uranus_texture = new aie::Texture("../bin/textures/uranus.png");
 
-	m_font = new aie::Font("./font/consolas.ttf", 32);
+	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
 
 	float size_adjustment = 0.6f;
@@ -122,7 +123,7 @@ bool Application2D::startup()
 	input = aie::Input::getInstance();
 
 	// -Ship-
-	m_player_texture = new aie::Texture("./textures/ship.png");
+	m_player_texture = new aie::Texture("../bin/textures/ship.png");
 	m_player = new game_object(m_2dRenderer, m_player_texture, { 100, 100 }, 0.0f, { 85, 85 });
 	m_player->set_collider(new circle(m_player->get_local_position(), m_player->get_size().x / 2));
 
