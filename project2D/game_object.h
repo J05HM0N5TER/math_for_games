@@ -12,17 +12,17 @@
 class game_object
 {
 public:
-	// Delete default constructor becuase class doesn't work without renderer, texture and position.
+	// Delete default constructor because class doesn't work without renderer, texture and position.
 	game_object() = delete;
 
-	/*!	\brief Construtor for game_object.
+	/*!	\brief Constructor for game_object.
 		\param a_renderer A pointer to the renderer that is being used in the project, this is used to draw itself on screen.
 		\param a_texture A pointer to the aie::Texture that you want the game_object to be displayed as.
 		\param a_position The position on screen that you want the game_object to be displayed at (does not include transformations).
 		\param a_z_rotation The rotation that you want the object to be placed at.
 		\param a_size The size that you want the game_object to be drawn at.
-		\prarm a_spin_speed The speed that the game_object spins around itself.
-		\param a_orbit_speed The speed that the game_object roatates around it's parent game_object.
+		\param a_spin_speed The speed that the game_object spins around itself.
+		\param a_orbit_speed The speed that the game_object rotates around it's parent game_object.
 	*/
 	game_object(aie::Renderer2D* a_renderer, aie::Texture* a_texture, const Vector2 a_position, const float a_z_rotation = 0.0f, 
 		const Vector2 a_size = { 0.0f, 0.0f }, const float a_spin_speed = 0.0f, const float a_orbit_speed = 0.0f);
@@ -42,7 +42,11 @@ public:
 	void set_local_position(const Vector2& a_position);
 	const Vector2 get_local_position() const;
 
-	//void set_rotation(const float& a_position);
+	/*!	\brief Manually sets the rotation of the game_object
+		\param a_rotation The rotation that is being set in radians.
+	*/
+	void set_local_rotation(const float& a_rotation);
+
 	// \brief Gets the rotation of the object with the transforms of the parents into account.
 	const float get_global_rotation() const;
 	// \brief Sets the rotation that doesn't get affected by the transforms of the parent objects.

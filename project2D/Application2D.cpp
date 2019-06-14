@@ -234,41 +234,20 @@ void Application2D::update(float deltaTime)
 		}
 	}
 
-	/*
-	// Update the camera position using the arrow keys
-	float camPosX;
-	float camPosY;
-	m_2dRenderer->getCameraPos(camPosX, camPosY);
-
-	if (input->isKeyDown(aie::INPUT_KEY_UP))
-		camPosY += 500.0f * deltaTime;
-
-	if (input->isKeyDown(aie::INPUT_KEY_DOWN))
-		camPosY -= 500.0f * deltaTime;
-
-	if (input->isKeyDown(aie::INPUT_KEY_LEFT))
-		camPosX -= 500.0f * deltaTime;
-
-	if (input->isKeyDown(aie::INPUT_KEY_RIGHT))
-		camPosX += 500.0f * deltaTime;
-
-	m_2dRenderer->setCameraPos(camPosX, camPosY);
-	*/
-
-	// exit the application
+	// exit the application [Esc].
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 
-	// Restart button ('R').
+	// Restart button [R].
 	if (input->isKeyDown(aie::INPUT_KEY_R))
 	{
 		// Set to the player being alive.
 		m_player->is_valid = true;
 
 		// Reset rotation for the player.
-		Matrix3 temp_transform_matrix;
-		temp_transform_matrix.setRotateZ(0.0f);
-		m_player->set_local_transform(temp_transform_matrix);
+		m_player->set_local_rotation(0.0f);
+
+		// Reset speed for the player.
 		m_player->set_speed(0.0f);
 
 		// Set the position of the player to the start position.
@@ -290,9 +269,6 @@ void Application2D::draw()
 
 	// Draw player/ship
 	m_player->draw();
-
-	// Draw line
-	//m_2dRenderer->drawLine(300, 300, 600, 400, 2, 1);
 
 	// Display text if player is dead.
 	if (!m_player->is_valid)

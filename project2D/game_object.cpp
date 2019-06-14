@@ -106,6 +106,11 @@ const Vector2 game_object::get_local_position() const
 	return { m_local_transform.position.x, m_local_transform.position.y };
 }
 
+void game_object::set_local_rotation(const float & a_rotation)
+{
+	m_local_transform.setRotateZ(a_rotation);
+}
+
 const float game_object::get_global_rotation() const
 {
 	game_object* current_game_object;
