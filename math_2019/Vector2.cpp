@@ -55,12 +55,6 @@ Vector2 Vector2::operator * (const Vector2 a_rhs) const
 	return { x * a_rhs.x, y * a_rhs.y };
 }
 
-Vector2 & Vector2::operator * (const float scalar)
-{
-	x *= scalar;
-	y *= scalar;
-	return *this;
-}
 
 Vector2 & Vector2::operator *= (const Vector2 a_rhs)
 {

@@ -60,15 +60,6 @@ Vector4 Vector4::operator * (const Vector4 a_rhs) const
 	return { x * a_rhs.x, y * a_rhs.y, z * a_rhs.z, w * a_rhs.w };
 }
 
-Vector4 & Vector4::operator * (const float scalar)
-{
-	x *= scalar;
-	y *= scalar;
-	z *= scalar;
-	w *= scalar;
-	return *this;
-}
-
 Vector4 & Vector4::operator *= (const Vector4 a_rhs)
 {
 	x *= a_rhs.x;
