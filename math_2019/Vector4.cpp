@@ -57,9 +57,9 @@ Vector4 Vector4::operator * (const float scalar) const
 
 Vector4 & Vector4::operator*=(const float scalar)
 {
-	this->x /= scalar;
-	this->y /= scalar;
-	this->z /= scalar;
+	this->x *= scalar;
+	this->y *= scalar;
+	this->z *= scalar;
 
 	return *this;
 }

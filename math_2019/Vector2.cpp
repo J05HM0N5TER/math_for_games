@@ -113,8 +113,8 @@ Vector2 operator*(const float & a_lhs, const Vector2 & a_rhs)
 
 Vector2 & Vector2::operator*=(const float scalar)
 {
-	this->y /= scalar;
-	this->x /= scalar;
+	this->y *= scalar;
+	this->x *= scalar;
 
 	return *this;
 }
