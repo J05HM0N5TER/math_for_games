@@ -51,24 +51,11 @@ Vector3 Vector3::operator * (const float scalar) const
 	return { x * scalar, y * scalar, z * scalar };
 }
 
-Vector3 Vector3::operator * (const Vector3 a_rhs) const
-{
-	return { x * a_rhs.x, y * a_rhs.y, z * a_rhs.z };
-}
-
 Vector3 & Vector3::operator *= (const float scalar)
 {
 	x *= scalar;
 	y *= scalar;
 	z *= scalar;
-	return *this;
-}
-
-Vector3 & Vector3::operator *= (const Vector3 a_rhs)
-{
-	x *= a_rhs.x;
-	y *= a_rhs.y;
-	z *= a_rhs.z;
 	return *this;
 }
 

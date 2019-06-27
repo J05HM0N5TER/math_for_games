@@ -55,17 +55,12 @@ Vector4 Vector4::operator * (const float scalar) const
 	return { x * scalar, y * scalar, z * scalar, w * scalar };
 }
 
-Vector4 Vector4::operator * (const Vector4 a_rhs) const
+Vector4 & Vector4::operator*=(const float scalar)
 {
-	return { x * a_rhs.x, y * a_rhs.y, z * a_rhs.z, w * a_rhs.w };
-}
+	this->x /= scalar;
+	this->y /= scalar;
+	this->z /= scalar;
 
-Vector4 & Vector4::operator *= (const Vector4 a_rhs)
-{
-	x *= a_rhs.x;
-	y *= a_rhs.y;
-	z *= a_rhs.z;
-	w *= a_rhs.w;
 	return *this;
 }
 
