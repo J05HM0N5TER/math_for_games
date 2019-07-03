@@ -51,3 +51,11 @@ const Vector2 aabb::get_min() const
 	return m_position - 0.5f * m_extents;
 }
 
+aabb & aabb::operator=(const aabb & a_rhs)
+{
+	this->m_extents = a_rhs.m_extents;
+	this->m_position = a_rhs.m_position;
+
+	return *this;
+}
+

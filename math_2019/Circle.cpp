@@ -29,5 +29,13 @@ void circle::set_position(const Vector2 & a_position)
 	m_position = a_position;
 }
 
+circle & circle::operator=(const circle & a_rhs)
+{
+	this->m_radus = a_rhs.m_radus;
+	this->m_position = a_rhs.m_position;
+
+	return *this;
+}
+
 
 

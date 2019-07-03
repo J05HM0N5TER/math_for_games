@@ -38,3 +38,11 @@ void line::set_distance(const float a_distance)
 {
 	m_distance = a_distance;
 }
+
+line & line::operator=(const line & a_rhs)
+{
+	this->m_normal = a_rhs.m_normal;
+	this->m_distance = a_rhs.m_distance;
+
+	return *this;
+}
