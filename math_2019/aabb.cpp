@@ -59,3 +59,14 @@ aabb & aabb::operator=(const aabb & a_rhs)
 	return *this;
 }
 
+bool aabb::operator==(const aabb & a_rhs)
+{
+	return 	(this->get_extents() == a_rhs.get_extents() &&
+		this->get_position() == a_rhs.get_position());
+}
+
+bool aabb::operator!=(const aabb & a_rhs)
+{
+	return !(*this == a_rhs);
+}
+

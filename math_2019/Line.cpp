@@ -46,3 +46,14 @@ line & line::operator=(const line & a_rhs)
 
 	return *this;
 }
+
+bool line::operator==(const line & a_rhs)
+{
+	return (this->get_normal() == a_rhs.get_normal() &&
+		this->get_normal() == a_rhs.get_normal());
+}
+
+bool line::operator!=(const line & a_rhs)
+{
+	return !(*this == a_rhs);
+}

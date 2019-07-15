@@ -37,5 +37,16 @@ circle & circle::operator=(const circle & a_rhs)
 	return *this;
 }
 
+bool circle::operator==(const circle & a_rhs)
+{
+	return (this->get_radus() == a_rhs.get_radus() &&
+		this->get_position() == a_rhs.get_position());
+}
+
+bool circle::operator!=(const circle & a_rhs)
+{
+	return !(*this == a_rhs);
+}
+
 
 
